@@ -1,19 +1,12 @@
 package DocumentaryCredit.DocumentaryCredit;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
-/**
- * Unit test for simple App.
- */
 public class AppTest {
 
-    /**
-     * Rigorous Test :-)
-     */
     @Test
-    public void shouldAnswerWithTrue() {
-        assertTrue(true);
+    public void sampleTest() {
+        System.out.println("AppTest is running!");
     }
 }
