@@ -1,21 +1,20 @@
 package Base;
 
+import org.openqa.selenium.*;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import Utilities.WindowHandle;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
-
 public class DriverManager {
-
     private static WebDriver driver;
     protected static WebDriverWait wait;
 
@@ -23,41 +22,21 @@ public class DriverManager {
 
     public static WebDriver getDriver() {
         if (driver == null) {
+            WebDriverManager.iedriver().setup();
 
-            EdgeOptions options = new EdgeOptions();
+            InternetExplorerOptions options = new InternetExplorerOptions();
+            options.ignoreZoomSettings();
+            options.introduceFlakinessByIgnoringSecurityDomains();
+            options.requireWindowFocus();
+            options.setCapability("ie.edgechromium", true); // enable IE mode
+            options.setCapability("ie.edgepath", "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe");
+ 
+            // options.requireWindowFocus();
 
-            // Detect current user
-            String userName = System.getProperty("user.name");
-            System.out.println("Current Windows user: " + userName);
-
-            // Set headless only for local users if needed
-            boolean runHeadless = false; // change to true if you want headless for local users
-            if (!"JenkinsAdmin".equalsIgnoreCase(userName) && runHeadless) {
-                options.addArguments("--headless=new");
-                options.addArguments("--disable-gpu");
-                System.out.println("Running Edge in headless mode (local user)");
-            } else {
-                System.out.println("Running Edge with GUI (JenkinsAdmin or local user)");
-            }
-
-            // Common Edge options
-            options.addArguments("--window-size=1920,1080");
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--remote-allow-origins=*");
-            options.addArguments("--disable-extensions");
-            options.addArguments("--disable-background-networking");
-
-            // Setup EdgeDriver using WebDriverManager
-            WebDriverManager.edgedriver().setup();
-            driver = new EdgeDriver(options);
-
-            // Maximize window and configure timeouts
+            driver = new InternetExplorerDriver(options);
             driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-            wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-            System.out.println("EdgeDriver initialized successfully");
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         }
         return driver;
     }
@@ -66,23 +45,34 @@ public class DriverManager {
         WebDriver driver = getDriver();
         driver.get(getProperty("url"));
 
+        // ✅ Handle SSL warning if shown
         try {
-            // Handle SSL warning if present
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("details-button"))).click();
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("proceed-link"))).click();
+            WindowHandle.slowDown(5);
+
+            WebElement moreInfoLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("More information")));
+            moreInfoLink.click();
+
+            WebElement continueLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Go on to the webpage (not recommended)")));
+            continueLink.click();
+
         } catch (Exception e) {
-            System.out.println("SSL warning not present, continuing...");
+            System.out.println("No SSL warning detected, continuing...");
         }
 
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Switch into login frame
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("loginFrame"));
 
-        driver.findElement(By.id("usertxt")).clear();
-        driver.findElement(By.id("usertxt")).sendKeys(userID);
-        driver.findElement(By.id("passtxt")).clear();
-        driver.findElement(By.id("passtxt")).sendKeys(password);
-        driver.findElement(By.id("Submit")).click();
+        // ✅ Use JavaScriptExecutor for instant input (no slow typing)
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.getElementById('usertxt').value='" + userID + "';");
+        js.executeScript("document.getElementById('passtxt').value='" + password + "';");
 
-        System.out.println("Logged in as: " + userID);
+        // ✅ Click login button normally
+        driver.findElement(By.xpath("//input[@id='Submit']")).click();
+
+        System.out.println("✅ Logged in as: " + userID);
     }
 
     public static String getProperty(String key) {
@@ -103,5 +93,22 @@ public class DriverManager {
             driver.quit();
             driver = null;
         }
+        
+       
+
     }
+    public static WebDriver reinitializeDriver() throws IOException {
+        try {
+            if (driver != null) {
+                driver.quit(); // Force close old session
+            }
+        } catch (Exception ignore) {
+            System.out.println("⚠ Old driver session already dead.");
+        }
+        driver = null; // Reset reference completely
+        driver = getDriver(); // Your existing driver initialization logic
+        return driver;
+    }
+
+    
 }
