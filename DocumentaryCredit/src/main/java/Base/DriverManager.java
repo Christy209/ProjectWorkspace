@@ -1,8 +1,8 @@
 package Base;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,19 +22,13 @@ public class DriverManager {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            WebDriverManager.iedriver().setup();
+            WebDriverManager.edgedriver().setup();
 
-            InternetExplorerOptions options = new InternetExplorerOptions();
-            options.ignoreZoomSettings();
-            options.introduceFlakinessByIgnoringSecurityDomains();
-            options.requireWindowFocus();
-            options.setCapability("ie.edgechromium", true); // enable IE mode
-            options.setCapability("ie.edgepath", "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe");
- 
-            // options.requireWindowFocus();
+            EdgeOptions options = new EdgeOptions();
+            options.addArguments("--start-maximized"); // maximize window
+            options.setCapability("acceptInsecureCerts", true); // handle SSL if needed
 
-            driver = new InternetExplorerDriver(options);
-            driver.manage().window().maximize();
+            driver = new EdgeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         }
@@ -45,7 +39,7 @@ public class DriverManager {
         WebDriver driver = getDriver();
         driver.get(getProperty("url"));
 
-        // ✅ Handle SSL warning if shown
+        // ✅ Handle SSL warning if shown (Edge should handle most)
         try {
             WindowHandle.slowDown(5);
 
@@ -64,7 +58,7 @@ public class DriverManager {
         // Switch into login frame
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("loginFrame"));
 
-        // ✅ Use JavaScriptExecutor for instant input (no slow typing)
+        // ✅ Use JavaScriptExecutor for instant input
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.getElementById('usertxt').value='" + userID + "';");
         js.executeScript("document.getElementById('passtxt').value='" + password + "';");
@@ -93,10 +87,8 @@ public class DriverManager {
             driver.quit();
             driver = null;
         }
-        
-       
-
     }
+
     public static WebDriver reinitializeDriver() throws IOException {
         try {
             if (driver != null) {
@@ -106,9 +98,7 @@ public class DriverManager {
             System.out.println("⚠ Old driver session already dead.");
         }
         driver = null; // Reset reference completely
-        driver = getDriver(); // Your existing driver initialization logic
+        driver = getDriver(); // Reinitialize Edge
         return driver;
     }
-
-    
 }
