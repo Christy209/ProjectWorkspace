@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Suite">
-  <test thread-count="5" name="Test">
-    <classes>
-     <class name="FederalBank_TestCases.TC02_IssuingdocumentaryCreditMaintenance"/>
-       <class name="FederalBank_TestCases.TC09_CopyingDocumentaryCredit"/>
-             <class name="FederalBank_TestCases.TC10_AdviseDocumentaryCredit"/>
-      <class name="FederalBank_TestCases.TC11_AmendingDocumentaryCredit"/>
-    </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+<suite name="FunctionalityTesting" verbose="1" parallel="false">
+
+    <listeners>
+        <listener class-name="Utilities.TestReportListener"/>
+    </listeners>
+
+    <test name="FunctionalityTesting">
+        <classes>
+            
+          <class name="PaymentTestCases.TC02_IssuingdocumentaryCreditMaintenance"/>
+            <class name="PaymentTestCases.TC09_CopyingDocumentaryCredit"/>
+          <class name="PaymentTestCases.TC10_AdviseDocumentaryCredit"/>
+            <class name="PaymentTestCases.TC11_AmendingDocumentaryCredit"/>
+        </classes>
+    </test>
+
+</suite>
