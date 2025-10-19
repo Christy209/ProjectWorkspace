@@ -32,6 +32,11 @@
             <version>7.11.0</version>
             <scope>compile</scope>
         </dependency>
+<dependency>
+    <groupId>com.BBSSL</groupId>
+    <artifactId>utilities</artifactId>
+    <version>1.0.0</version> <!-- replace with actual version -->
+</dependency>
 
         <!-- Apache POI for Excel -->
         <dependency>
