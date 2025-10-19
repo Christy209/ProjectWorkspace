@@ -1,0 +1,347 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------------< Core:CoreBanking >--------------------------
+[INFO] Building CoreBanking 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ CoreBanking ---
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.8.1:compile (default-compile) @ CoreBanking ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ CoreBanking ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.8.1:testCompile (default-testCompile) @ CoreBanking ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 74 source files to C:\Users\priya\Finacle\Guarantee\target\test-classes
+[INFO] /C:/Users/priya/Finacle/Guarantee/src/test/java/Utilities/ErrorCapture.java: C:\Users\priya\Finacle\Guarantee\src\test\java\Utilities\ErrorCapture.java uses or overrides a deprecated API.
+[INFO] /C:/Users/priya/Finacle/Guarantee/src/test/java/Utilities/ErrorCapture.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- surefire:3.0.0:test (default-test) @ CoreBanking ---
+[INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running TestSuite
+[main] INFO org.testng.internal.Utils - [XmlSuite] [WARN] 'parallel' value 'false' is no longer valid, defaulting to 'none'.
+[main] INFO io.github.bonigarcia.wdm.WebDriverManager - Using msedgedriver 141.0.3537.57 (resolved driver for Edge 141)
+[main] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.edge.driver as C:\Users\priya\.cache\selenium\msedgedriver\win64\141.0.3537.57\msedgedriver.exe
+Oct 10, 2025 3:39:28 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 141
+Oct 10, 2025 3:39:28 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$4
+WARNING: Unable to find version of CDP to use for 141.0.3537.57. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.29.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Logged in as: BBSSL26
+Logged with BBSSL26
+? Starting Add for Guarantee...
+? Error Found: E4221 - The fructified liability exists for the customer.
+? Submit button clicked successfully.
+? No system error encountered.
+? Excel updated: GuaranteeNo = 003BG250033
+? Guarantee Number captured successfully: 003BG250033
+?? No Transaction ID found in this case.
+?? Submit button not clickable, but proceeding if GuaranteeNo is captured: Expected condition failed: waiting for element to be clickable: By.id: Submit (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.29.0', revision: '5fc1ec94cb'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 141.0.3537.57, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:60545}, msedge: {msedgedriverVersion: 141.0.3537.57 (edf1b001e567..., userDataDir: C:\Users\priya\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60545/devtoo..., se:cdpVersion: 141.0.3537.57, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 255718751875993744ade24e89bdb7da
+? No system error encountered.
+? Excel updated: GuaranteeNo = 003BG250033
+? Guarantee Number captured successfully: 003BG250033
+?? No Transaction ID found in this case.
+? Guarantee No Captured during Add: 003BG250033
+?? Alert Message: Are you sure you want to logout?
+? Logout performed successfully after Add.
+SSL warning not present, continuing...
+Logged in as: BBSSL64
+Logged with BBSSL64
+? Navigation successful — next page loaded after action.
+? No error message found, proceeding with test.
+
+? Validating Excel vs. Application Data...
+
+--------------------------
+? Total Excel Fields  : 20
+? Matched Fields      : 0
+? Mismatched Fields   : 0
+?? Missing Fields      : 3
+?? Extra Fields in UI  : 0
+?? Missing Keys: [FunctionCode, Menu, GuaranteeNo]
+? All data matched successfully!
+? Submit button clicked successfully.
+? No system error encountered.
+? No UI Error Message Displayed. Proceeding...
+? Excel updated: GuaranteeNo = 003BG250033
+? Guarantee Number captured successfully: 003BG250033
+?? No Transaction ID found in this case.
+? Guarantee No Captured during Verify: 003BG250033
+? Guarantee No. 003BG250033 verified successfully.
+? Logout performed successfully at end.
+SSL warning not present, continuing...
+Logged in as: BBSSL26
+Logged with BBSSL26
+? Starting Modification for Guarantee...
+? Navigation successful — next page loaded after action.
+? No error message found, proceeding with test.
+? Submit button clicked successfully.
+? No system error encountered.
+? Excel updated: GuaranteeNo = 003BG250033
+? Guarantee Number captured successfully: 003BG250033
+?? No Transaction ID found in this case.
+?? Submit button not clickable, but proceeding if GuaranteeNo is captured: Expected condition failed: waiting for element to be clickable: By.id: Submit (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.29.0', revision: '5fc1ec94cb'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 141.0.3537.57, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:60545}, msedge: {msedgedriverVersion: 141.0.3537.57 (edf1b001e567..., userDataDir: C:\Users\priya\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60545/devtoo..., se:cdpVersion: 141.0.3537.57, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 255718751875993744ade24e89bdb7da
+? No system error encountered.
+? Excel updated: GuaranteeNo = 003BG250033
+? Guarantee Number captured successfully: 003BG250033
+?? No Transaction ID found in this case.
+? Guarantee No Captured during Modify: 003BG250033
+?? Alert Message: Are you sure you want to logout?
+? Logout performed successfully after Modify.
+SSL warning not present, continuing...
+Logged in as: BBSSL64
+Logged with BBSSL64
+? Exception Occurred: Expected condition failed: waiting for presence of element located by: By.id: menuSelect (tried for 10 second(s) with 500 milliseconds interval)
+Logout failed: Expected condition failed: waiting for element to be clickable: By.xpath: //a[contains(@href, 'logout')] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.29.0', revision: '5fc1ec94cb'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 141.0.3537.57, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:60545}, msedge: {msedgedriverVersion: 141.0.3537.57 (edf1b001e567..., userDataDir: C:\Users\priya\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60545/devtoo..., se:cdpVersion: 141.0.3537.57, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 255718751875993744ade24e89bdb7da
+? Logout performed successfully at end.
+SSL warning not present, continuing...
+Logged in as: BBSSL26
+Logged with BBSSL26
+? Starting Mark invoke for Guarantee...
+? Error Found: E4221 - This BG is in Unverified state.
+? Guarantee Number Processing Error: Expected condition failed: waiting for presence of element located by: By.id: markInvokeAmt (tried for 10 second(s) with 500 milliseconds interval)
+?? Alert Message: Are you sure you want to logout?
+? Logout performed successfully at end.
+SSL warning not present, continuing...
+Logged in as: BBSSL26
+Logged with BBSSL26
+? Starting Mark Invoke for Guarantee...
+? Error Found: E4221 - This BG is in Unverified state.
+? Guarantee Number Processing Error: Expected condition failed: waiting for presence of element located by: By.id: loanacid (tried for 10 second(s) with 500 milliseconds interval)
+? Assertion Failure: Test Failed: Exception occurred -> Expected condition failed: waiting for presence of element located by: By.id: loanacid (tried for 10 second(s) with 500 milliseconds interval)
+?? Alert Message: Are you sure you want to logout?
+? Logout performed successfully at end.
+SSL warning not present, continuing...
+Logged in as: BBSSL26
+Logged with BBSSL26
+? Starting Mark invoke for Guarantee...
+? Error Found: E4221 - This BG is in Unverified state.
+? Performing Close operation for Guarantee...
+?? Submit button not clickable, but proceeding if GuaranteeNo is captured: Expected condition failed: waiting for element to be clickable: By.id: Submit (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.29.0', revision: '5fc1ec94cb'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 141.0.3537.57, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:60545}, msedge: {msedgedriverVersion: 141.0.3537.57 (edf1b001e567..., userDataDir: C:\Users\priya\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60545/devtoo..., se:cdpVersion: 141.0.3537.57, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 255718751875993744ade24e89bdb7da
+? No system error encountered.
+? Guarantee NO creation error: Expected condition failed: waiting for visibility of element located by By.xpath: //label[@id='compField'] (tried for 20 second(s) with 500 milliseconds interval)
+Build info: version: '4.29.0', revision: '5fc1ec94cb'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 141.0.3537.57, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:60545}, msedge: {msedgedriverVersion: 141.0.3537.57 (edf1b001e567..., userDataDir: C:\Users\priya\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60545/devtoo..., se:cdpVersion: 141.0.3537.57, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 255718751875993744ade24e89bdb7da
+?? Alert Message: Are you sure you want to logout?
+? Logout performed successfully at end.
+[ERROR] Tests run: 5, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 400.148 s <<< FAILURE! - in TestSuite
+[ERROR] FederalBank_TestCases.TC13_ModifyAnExistingGuarantee.runTest  Time elapsed: 125.185 s  <<< FAILURE!
+java.lang.AssertionError: ? Exception Occurred: Expected condition failed: waiting for presence of element located by: By.id: menuSelect (tried for 10 second(s) with 500 milliseconds interval)
+	at org.testng.Assert.fail(Assert.java:111)
+	at FederalBank_TestCases.TC13_ModifyAnExistingGuarantee.runTest(TC13_ModifyAnExistingGuarantee.java:84)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:741)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+
+[ERROR] FederalBank_TestCases.TC14_MarkParticularGuaranteeforInvocation.runTest  Time elapsed: 25.67 s  <<< FAILURE!
+java.lang.AssertionError: Test Failed: Exception occurred -> Expected condition failed: waiting for presence of element located by: By.id: markInvokeAmt (tried for 10 second(s) with 500 milliseconds interval)
+	at org.testng.Assert.fail(Assert.java:111)
+	at PAYMENTS.OutwardGuaranteeMaintenance.executeWithResultMap(OutwardGuaranteeMaintenance.java:120)
+	at FederalBank_TestCases.TC14_MarkParticularGuaranteeforInvocation.runTest(TC14_MarkParticularGuaranteeforInvocation.java:49)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:741)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+
+[ERROR] FederalBank_TestCases.TC15_Invokeguaranteeaftermarkingitforinvocation.runTest  Time elapsed: 25.315 s  <<< FAILURE!
+java.lang.AssertionError: ? Assertion Failure: Test Failed: Exception occurred -> Expected condition failed: waiting for presence of element located by: By.id: loanacid (tried for 10 second(s) with 500 milliseconds interval)
+	at org.testng.Assert.fail(Assert.java:111)
+	at FederalBank_TestCases.TC15_Invokeguaranteeaftermarkingitforinvocation.runTest(TC15_Invokeguaranteeaftermarkingitforinvocation.java:79)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:741)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+
+[ERROR] FederalBank_TestCases.TC16_CloseTheguaranteeWhichIsAlreadyInvoked.runTest  Time elapsed: 69.401 s  <<< FAILURE!
+java.lang.AssertionError: 
+Test Failed: Exception occurred -> Expected condition failed: waiting for visibility of element located by By.xpath: //label[@id='compField'] (tried for 20 second(s) with 500 milliseconds interval)
+Build info: version: '4.29.0', revision: '5fc1ec94cb'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 141.0.3537.57, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:60545}, msedge: {msedgedriverVersion: 141.0.3537.57 (edf1b001e567..., userDataDir: C:\Users\priya\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60545/devtoo..., se:cdpVersion: 141.0.3537.57, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 255718751875993744ade24e89bdb7da
+	at org.testng.Assert.fail(Assert.java:111)
+	at PAYMENTS.OutwardGuaranteeMaintenance.submitAndValidateGuarantee(OutwardGuaranteeMaintenance.java:261)
+	at PAYMENTS.OutwardGuaranteeMaintenance.executeWithResultMap(OutwardGuaranteeMaintenance.java:77)
+	at FederalBank_TestCases.TC16_CloseTheguaranteeWhichIsAlreadyInvoked.runTest(TC16_CloseTheguaranteeWhichIsAlreadyInvoked.java:52)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:741)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   TC13_ModifyAnExistingGuarantee.runTest:84 ? Exception Occurred: Expected condition failed: waiting for presence of element located by: By.id: menuSelect (tried for 10 second(s) with 500 milliseconds interval)
+[ERROR]   TC14_MarkParticularGuaranteeforInvocation.runTest:49 Test Failed: Exception occurred -> Expected condition failed: waiting for presence of element located by: By.id: markInvokeAmt (tried for 10 second(s) with 500 milliseconds interval)
+[ERROR]   TC15_Invokeguaranteeaftermarkingitforinvocation.runTest:79 ? Assertion Failure: Test Failed: Exception occurred -> Expected condition failed: waiting for presence of element located by: By.id: loanacid (tried for 10 second(s) with 500 milliseconds interval)
+[ERROR]   TC16_CloseTheguaranteeWhichIsAlreadyInvoked.runTest:52 Test Failed: Exception occurred -> Expected condition failed: waiting for visibility of element located by By.xpath: //label[@id='compField'] (tried for 20 second(s) with 500 milliseconds interval)
+Build info: version: '4.29.0', revision: '5fc1ec94cb'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 141.0.3537.57, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:60545}, msedge: {msedgedriverVersion: 141.0.3537.57 (edf1b001e567..., userDataDir: C:\Users\priya\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60545/devtoo..., se:cdpVersion: 141.0.3537.57, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 255718751875993744ade24e89bdb7da
+[INFO] 
+[ERROR] Tests run: 5, Failures: 4, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  06:53 min
+[INFO] Finished at: 2025-10-10T15:46:06+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.0.0:test (default-test) on project CoreBanking: There are test failures.
+[ERROR] 
+[ERROR] Please refer to C:\Users\priya\Finacle\Guarantee\target\surefire-reports for the individual test results.
+[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

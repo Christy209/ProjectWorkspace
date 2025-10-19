@@ -1,0 +1,1 @@
+{"uuid":"f3287858-771b-4415-a52f-b8a6bc489b52","name":"TestCases.TC06_Custom_PMSBY","children":["a8a57076-e5fb-40b3-b64b-63b1fcf8d9b0"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1751535745080,"stop":1751535749662}],"afters":[],"start":1751535744990,"stop":1751535882748}
