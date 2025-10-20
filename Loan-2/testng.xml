@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite">
+  <test name="Test">
+    <classes>    
+   
+	  <class name="TestCases.TC10_RevisedflowusingHLARAandVerify"/>
+	  <class name="TestCases.TC11_TestscheduledpaymentofmigratedaccountsAndVerify"/>
+	  <class name="TestCases.TC12_TestUnscheduledpaymentofmigratedaccountsAndVerify"/> 
+</classes>
+  </test>
+</suite>
