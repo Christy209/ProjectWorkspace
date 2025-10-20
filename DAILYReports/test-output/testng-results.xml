@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-10-10T12:13:01 IST" name="Default suite" finished-at="2025-10-10T12:15:28 IST" duration-ms="146613">
+    <groups>
+    </groups>
+    <test started-at="2025-10-10T12:13:01 IST" name="Default test" finished-at="2025-10-10T12:15:28 IST" duration-ms="146613">
+      <class name="TermDeposit.OpeningTermDepositAccount">
+        <test-method is-config="true" signature="getDriver()[pri:0, instance:TermDeposit.OpeningTermDepositAccount@4a07d605]" started-at="2025-10-10T12:13:01 IST" name="getDriver" finished-at="2025-10-10T12:13:01 IST" duration-ms="19" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getDriver -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:TermDeposit.OpeningTermDepositAccount@4a07d605]" started-at="2025-10-10T12:13:01 IST" name="setup" finished-at="2025-10-10T12:13:17 IST" duration-ms="16247" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="createTDAccount(Utilities.RowData)[pri:0, instance:TermDeposit.OpeningTermDepositAccount@4a07d605]" started-at="2025-10-10T12:13:22 IST" name="createTDAccount" data-provider="testcase" finished-at="2025-10-10T12:15:27 IST" duration-ms="125824" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[RowData{headerMap={GL Code=, dueDate=11/10/2023, TestCaseName=CreateTDAccountWithAllFields, relation=001, repayAcct=0003LN510085, GuardianCode=, natAdv=001, relnCode=11, modeOfOperCode=ADM, nomPcnt=100, operAcct=CRBAL, maxRenew=2, Advance Type=42, SchmCode=1404, 2 nd NomineeCifId=, pegFreqMnths=03, DepositPeriod=12, relativeStaffId=15, docCode=ADHAR, City=, Created_AccountID=003140400000030, AddressLine2=, modeAdv=DIRCT, AddressLine1=KERALA, Address Type  =Home, State=, NomineeCifId=R0003533, Country=, Second RelatedPartyflg=Y, Title =MR, sectCode=AGRI, acctOpenDate_ui=11/10/2023, docScanFlg=S - Scanned, renewSchm=, renewCrncy=, PostalCode=, occCode=002, relnType=J - Joint Holder, renewMths=, maturityDate_ui=08-08-2026, Second Nominee =, Menu=HOAACTD, acctPrefIntCr=2, depAmt=50,000.00, CIF ID=R0003867, autoClosureFlg=Y, pegFreqDay=30, GuardianName=, Nominee Minor=N, custPrefIntCr=2, 2 nd Relationship=, funcode=O - Open, regValue=5, 2 nd Nomination Pcnt.=, valueDate_ui=08/07/2019, chanPrefIntCr=1, subSectCode=10010, RenewalClosureRadioButton=No, Address Line 1=chennai, renewGLSubHead=}, indexList=[CreateTDAccountWithAllFields, HOAACTD, R000002384, 1404, , 11/10/2023, ADM, 15, 2, 2, 1, 03, 30, 08/07/2019, 50,000.00, 12, 08-08-2026, 0003LN510085, CRBAL, No, Y, 2, , , , , 5, R0003533, 001, 100, N, , , KERALA, , , , , , , , , , 012, Y, J - Joint Holder, 11, R0003867, MR, Home, chennai, ADHAR, 11/10/2023, S - Scanned, AGRI, 10010, 002, DIRCT, 42, 001, 003140400000030, O - Open]}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createTDAccount -->
+      </class> <!-- TermDeposit.OpeningTermDepositAccount -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
