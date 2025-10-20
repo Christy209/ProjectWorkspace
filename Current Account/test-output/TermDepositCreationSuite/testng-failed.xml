@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [TermDepositCreationSuite]">
+  <test thread-count="5" name="TermDepositExecution(failed)">
+    <classes>
+      <class name="TermDeposit.CloseTermDeposit">
+        <methods>
+          <include name="colsingtdaccount" invocation-numbers="0"/>
+          <include name="getDriver"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- TermDeposit.CloseTermDeposit -->
+    </classes>
+  </test> <!-- TermDepositExecution(failed) -->
+</suite> <!-- Failed suite [TermDepositCreationSuite] -->

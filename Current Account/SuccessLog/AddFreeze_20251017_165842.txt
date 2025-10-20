@@ -1,0 +1,8 @@
+Unexpected issue: Unable to get element text
+Build info: version: '4.29.0', revision: '5fc1ec94cb'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Command: [89956681-ae23-4c17-8284-74134b4cbef9, getElementText {id=b2b68925-38ec-4339-93de-338abe5957cb}]
+Capabilities {acceptInsecureCerts: false, browserName: internet explorer, browserVersion: 11, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:ieOptions: {browserAttachTimeout: 0, elementScrollBehavior: 0, enablePersistentHover: false, ie.browserCommandLineSwitches: , ie.edgechromium: true, ie.edgepath: C:\Program Files (x86)\Micr..., ie.ensureCleanSession: false, ie.fileUploadDialogTimeout: 3000, ie.forceCreateProcessApi: false, ie.ignoreprocessmatch: false, ignoreProtectedModeSettings: true, ignoreZoomSetting: true, initialBrowserUrl: http://localhost:24086/, nativeEvents: true, requireWindowFocus: true}, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Element: [[InternetExplorerDriver: internet explorer on windows (89956681-ae23-4c17-8284-74134b4cbef9)] -> css selector: table.innertable]
+Session ID: 89956681-ae23-4c17-8284-74134b4cbef9
