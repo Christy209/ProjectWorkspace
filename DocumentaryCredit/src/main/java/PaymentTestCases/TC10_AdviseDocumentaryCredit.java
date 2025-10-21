@@ -25,7 +25,7 @@ public class TC10_AdviseDocumentaryCredit {
 	    public void setup() throws Exception {
 
 	        driver = DriverManager.getDriver(); 
-	        wait = new WebDriverWait(driver, Duration.ofSeconds(3)); // initialize driver from DriverManager
+	        wait = new WebDriverWait(driver, Duration.ofSeconds(30)); // initialize driver from DriverManager
 	    }
 	    @Test
 	    public void runTest() throws Exception {
