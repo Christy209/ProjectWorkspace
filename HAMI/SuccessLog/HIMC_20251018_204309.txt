@@ -1,0 +1,7 @@
+From Location Class SB TESTING PURPOSES   From Location Code EMP EMPLOYEE
+To Location Class DL DOUBLE LOCK   To Location Code DC SAVINGS CHEQUE BOOK
+Records    to  1  of  1
+Inventory Class/Type Inventory Alpha Start No. End No. Quantity Transfer Particulars Del.
+CHQ / SB   YUVRAJ  1  100  100    No
+
+/
