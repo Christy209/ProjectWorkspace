@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-10-19T17:15:48 IST" name="Default suite" finished-at="2025-10-19T17:16:54 IST" duration-ms="65854">
+    <groups>
+    </groups>
+    <test started-at="2025-10-19T17:15:48 IST" name="Default test" finished-at="2025-10-19T17:16:54 IST" duration-ms="65854">
+      <class name="Positive.Cancelhddsm">
+        <test-method is-config="true" signature="getDriver()[pri:0, instance:Positive.Cancelhddsm@54e041a4]" started-at="2025-10-19T17:15:48 IST" name="getDriver" finished-at="2025-10-19T17:15:48 IST" duration-ms="18" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getDriver -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:Positive.Cancelhddsm@54e041a4]" started-at="2025-10-19T17:15:48 IST" name="setup" finished-at="2025-10-19T17:16:07 IST" duration-ms="18604" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="Addfreeze(Utilities.RowData)[pri:0, instance:Positive.Cancelhddsm@54e041a4]" started-at="2025-10-19T17:16:09 IST" name="Addfreeze" data-provider="testcase" finished-at="2025-10-19T17:16:54 IST" duration-ms="45078" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[RowData{headerMap={crncyCode=INR, FUNCODE=X - Cancel, ddAmt=20000, ddStatDate_ui=15/03/2025, ddNum=4, schmCode=DDGEN, issBrCode=RP1XXX, TESTCASE=hddsm, purName=RANI, cautionedStat=C - Cautioned, issDate_ui=15/03/2025, ddStat=P - Paid, Menu=HDDSM, issBankCode=GSTI}, indexList=[hddsm, HDDSM, X - Cancel, 4, 20000, DDGEN, GSTI, RP1XXX, 15/03/2025, INR, RANI, P - Paid, C - Cautioned, 15/03/2025]}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Addfreeze -->
+      </class> <!-- Positive.Cancelhddsm -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

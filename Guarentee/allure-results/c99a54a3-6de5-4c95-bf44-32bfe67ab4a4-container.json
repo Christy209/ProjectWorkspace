@@ -1,0 +1,1 @@
+{"uuid":"c99a54a3-6de5-4c95-bf44-32bfe67ab4a4","name":"FederalBank_TestCases.TC05_BookForwardContract","children":["0d6f35d1-f3b0-445d-abd2-9ce5ef4cd7eb"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1759916877278,"stop":1759916889666}],"afters":[],"start":1759916877188,"stop":1759916912142}
