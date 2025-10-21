@@ -1,0 +1,17 @@
+Function * SelectF - FreezeU - UnfreezeI - InquireV - VerifyX - Cancel   SOL ID
+A/c. ID
+Master/Multi CCY A/c. ID
+CIF ID
+Freeze Code Total FreezeCredit Only
+Debit Only   Department
+Freeze Reason Code 1
+Freeze Remarks 1
+Freeze Reason Code 2
+Freeze Remarks 2
+Freeze Reason Code 3
+Freeze Remarks 3
+Freeze Reason Code 4
+Freeze Remarks 4
+Freeze Reason Code 5
+Freeze Remarks 5
+Modify Freeze Details YesNo   Ref. No.

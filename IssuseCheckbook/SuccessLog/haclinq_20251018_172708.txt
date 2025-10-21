@@ -1,0 +1,14 @@
+A/c. ID 003100500000442 INR 003 PERUMAL
+A/c. Status ACTIVE   A/c. Status Date 31-01-2023
+A/c. Open Date
+31-01-2023   A/c. Close Date
+GL Subhead 05090   A/c. Type CUSTOMER ACCOUNT
+Opening Bal. INR            15,67,198.16  CR.   Available Amt. INR            15,13,198.16  CR.
+Closing Bal. INR            15,33,198.16  CR.   Effective Available Amt. INR            15,13,198.16  CR.
+Funds in Clg. INR            20,000.00  CR.   Float Bal. INR            0.00  CR.
+Page  1  of  1
+Transaction Date Value Date Instrument No Particulars CCY Debit Amt. Credit Amt. Bal.
+15-03-2025 15-03-2025 TRANSACTION REFERENCE CODE INR 10,000.00 15,33,198.16CR.
+15-03-2025 15-03-2025 TRANSACTION REFERENCE CODE INR 10,000.00 15,43,198.16CR.
+15-03-2025 15-03-2025 TRANSACTION REFERENCE CODE INR 10,000.00 15,53,198.16CR.
+15-03-2025 15-03-2025 BY CASH INR 4,000.00 15,63,198.16CR.
