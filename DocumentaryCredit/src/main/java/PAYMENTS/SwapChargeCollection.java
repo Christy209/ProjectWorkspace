@@ -21,7 +21,7 @@ public class SwapChargeCollection {
 
 		    public SwapChargeCollection(WebDriver driver) {
 		        this.driver = driver;
-		        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
+		        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30)); 
 		    }
 		    	    
 		    public String execute(RowData inputData , String sheetname,int row,String excelpath) throws Exception {

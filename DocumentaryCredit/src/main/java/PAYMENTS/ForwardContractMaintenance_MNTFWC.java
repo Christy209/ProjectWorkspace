@@ -27,7 +27,7 @@ public class ForwardContractMaintenance_MNTFWC {
 
 	    public ForwardContractMaintenance_MNTFWC(WebDriver driver) {
 	        this.driver = driver;
-	        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
+	        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30)); 
 	    }
 	    	    
 	    public Map<String, String> execute(RowData inputData, RowData no, String sheetname, int row, String excelpath) throws Exception {

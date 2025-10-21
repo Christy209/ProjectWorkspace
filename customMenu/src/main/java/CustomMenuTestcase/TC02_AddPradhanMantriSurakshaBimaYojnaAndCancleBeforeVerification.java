@@ -29,7 +29,7 @@ public class TC02_AddPradhanMantriSurakshaBimaYojnaAndCancleBeforeVerification {
 	    @BeforeClass
 	    public void setup() {
 	        driver = DriverManager.getDriver();
-	        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 	    }
 
 	    @Test

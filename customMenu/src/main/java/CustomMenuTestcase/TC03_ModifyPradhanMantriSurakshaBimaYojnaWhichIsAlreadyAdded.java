@@ -27,7 +27,7 @@ public class TC03_ModifyPradhanMantriSurakshaBimaYojnaWhichIsAlreadyAdded {
     @BeforeClass
     public void setup() {
         driver = DriverManager.getDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));  // increased timeout
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));  // increased timeout
     }
 
     @Test

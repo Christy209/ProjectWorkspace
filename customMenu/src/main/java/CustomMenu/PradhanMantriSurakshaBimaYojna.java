@@ -25,7 +25,7 @@ public class PradhanMantriSurakshaBimaYojna {
 
 	    public PradhanMantriSurakshaBimaYojna(WebDriver driver) {
 	        this.driver = driver;
-	        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
+	        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30)); 
 	    }
 	    public Map<String, String> execute(List<String> data,String excelpath,String sheetname,int row) throws Exception {
 	    	

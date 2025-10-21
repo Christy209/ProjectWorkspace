@@ -23,7 +23,7 @@ public class PMSBY {
 
 	    public PMSBY(WebDriver driver) {
 	        this.driver = driver;
-	        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
+	        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30)); 
 	    }
 	    public void execute(List<String> data,String excelpath,String sheetname,int row) throws Exception {
 	    	

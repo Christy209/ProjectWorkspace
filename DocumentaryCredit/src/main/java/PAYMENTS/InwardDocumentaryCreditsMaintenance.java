@@ -24,7 +24,7 @@ public class InwardDocumentaryCreditsMaintenance {
 
     public InwardDocumentaryCreditsMaintenance(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     public Map<String, String> execute(RowData inputData, RowData id, String sheetname, int row, String excelpath) throws Exception {
