@@ -6,7 +6,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import Utilities.WindowHandle;
+import Utilities.WindowHandle; // Custom utility for sleep
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.io.FileInputStream;
@@ -20,13 +20,14 @@ public class DriverManager {
 
     private DriverManager() {} // Prevent instance creation
 
+    // ✅ Initialize EdgeDriver
     public static WebDriver getDriver() {
         if (driver == null) {
             WebDriverManager.edgedriver().setup();
 
             EdgeOptions options = new EdgeOptions();
-            options.addArguments("--start-maximized"); // maximize window
-            options.setCapability("acceptInsecureCerts", true); // handle SSL if needed
+            options.addArguments("--start-maximized"); // Maximize window
+            options.setCapability("acceptInsecureCerts", true); // Accept SSL
 
             driver = new EdgeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -35,40 +36,47 @@ public class DriverManager {
         return driver;
     }
 
+    // ✅ Login method
     public static void login(String userID, String password) {
         WebDriver driver = getDriver();
         driver.get(getProperty("url"));
 
-        // ✅ Handle SSL warning if shown (Edge should handle most)
+        // Handle SSL warning if present
         try {
-            WindowHandle.slowDown(5);
+            WindowHandle.slowDown(3);
 
-            WebElement moreInfoLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("More information")));
-            moreInfoLink.click();
+//            WebElement moreInfo = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("More information")));
+//            moreInfo.click();
+//
+//            WebElement continueLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Go on to the webpage (not recommended)")));
+//            continueLink.click();
 
-            WebElement continueLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Go on to the webpage (not recommended)")));
-            continueLink.click();
-
+            wait.until(ExpectedConditions.elementToBeClickable(By.id("details-button"))).click();
+            wait.until(ExpectedConditions.elementToBeClickable(By.id("proceed-link"))).click();
+              
         } catch (Exception e) {
             System.out.println("No SSL warning detected, continuing...");
         }
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        // Switch into login frame
+        // Switch to login frame
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("loginFrame"));
 
-        // ✅ Use JavaScriptExecutor for instant input
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("document.getElementById('usertxt').value='" + userID + "';");
-        js.executeScript("document.getElementById('passtxt').value='" + password + "';");
-
-        // ✅ Click login button normally
+        // Fill login fields using JavaScript to avoid flakiness
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("document.getElementById('usertxt').value='" + userID + "';");
+//        js.executeScript("document.getElementById('passtxt').value='" + password + "';");
+        driver.findElement(By.xpath("//input[@id='usertxt']")).clear();
+        driver.findElement(By.xpath("//input[@id='usertxt']")).sendKeys(userID);
+        driver.findElement(By.xpath("//input[@id='passtxt']")).clear();
+        driver.findElement(By.xpath("//input[@id='passtxt']")).sendKeys(password);
         driver.findElement(By.xpath("//input[@id='Submit']")).click();
+        // Click login button
+        System.out.println("Logged in as: " + userID);
 
         System.out.println("✅ Logged in as: " + userID);
     }
 
+    // ✅ Read property from config.properties
     public static String getProperty(String key) {
         try {
             String projectPath = System.getProperty("user.dir");
@@ -82,6 +90,7 @@ public class DriverManager {
         }
     }
 
+    // ✅ Quit driver safely
     public static void quitDriver() {
         if (driver != null) {
             driver.quit();
@@ -89,16 +98,16 @@ public class DriverManager {
         }
     }
 
-    public static WebDriver reinitializeDriver() throws IOException {
+    // ✅ Reinitialize driver (for Jenkins/CI flaky sessions)
+    public static WebDriver reinitializeDriver() {
         try {
             if (driver != null) {
-                driver.quit(); // Force close old session
+                driver.quit();
             }
         } catch (Exception ignore) {
-            System.out.println("⚠ Old driver session already dead.");
+            System.out.println("⚠ Old driver session already closed.");
         }
-        driver = null; // Reset reference completely
-        driver = getDriver(); // Reinitialize Edge
-        return driver;
+        driver = null;
+        return getDriver();
     }
 }
