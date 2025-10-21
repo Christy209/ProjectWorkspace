@@ -13,10 +13,7 @@ import org.testng.annotations.Test;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
-
-import Positive.CreateSavingsAccountwithnomineeandrelatedparty;
 import Positive.HAMI;
-import Positive.VerifyingCreateSavingsAccountwithnomineeandrelatedparty;
 
 public class TC24_MergeHAMAI {
 	 @Test
