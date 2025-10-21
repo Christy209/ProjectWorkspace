@@ -12,8 +12,6 @@ import org.testng.annotations.Test;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
-
-import Loan.*;
 import Positive.CreateSavingsAccountwithnomineeandrelatedparty;
 import Positive.VerifyingCreateSavingsAccountwithnomineeandrelatedparty;
 
