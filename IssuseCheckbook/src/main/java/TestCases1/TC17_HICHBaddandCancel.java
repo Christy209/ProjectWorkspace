@@ -13,11 +13,9 @@ import org.testng.annotations.Test;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
-
 import Positive.CancelHICHB;
 import Positive.HICHBadd;
-import Positive.hichb;
-import Positive.verify;
+
 
 public class TC17_HICHBaddandCancel {
 	 @Test

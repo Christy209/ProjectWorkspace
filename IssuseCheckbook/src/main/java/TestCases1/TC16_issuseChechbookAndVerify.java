@@ -13,9 +13,6 @@ import org.testng.annotations.Test;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
-
-import Positive.CreateSavingsAccountwithnomineeandrelatedparty;
-import Positive.VerifyingCreateSavingsAccountwithnomineeandrelatedparty;
 import Positive.hichb;
 import Positive.verify;
 
