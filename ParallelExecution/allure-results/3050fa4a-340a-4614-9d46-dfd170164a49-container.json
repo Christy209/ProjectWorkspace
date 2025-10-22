@@ -1,0 +1,1 @@
+{"uuid":"3050fa4a-340a-4614-9d46-dfd170164a49","name":"CASA.Cashdeposit","children":["322a38fe-3897-455e-b113-a7cdf2e0c03f"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1755669438370,"stop":1755669449396}],"afters":[],"start":1755669423328,"stop":1755669449452}

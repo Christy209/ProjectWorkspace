@@ -1,0 +1,1 @@
+{"uuid":"14488db0-b994-48c4-a017-12169a32fb80","name":"Loan.LoanAccountOpening","children":["7e720cf8-41ac-469e-8ec2-1147ca45a00f"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1755666799315,"stop":1755666801195}],"afters":[],"start":1755666799309,"stop":1755666859019}

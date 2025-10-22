@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="CoreBankingSuite" parallel="tests" thread-count="2" verbose="2">
+
+    <!-- Test 1: LoanLoan Test Case on Chrome -->
+   <test name="TC02_LoanLoan_IE">
+    <parameter name="browser" value="ie"/>
+    <classes>
+        <class name="TestCases.TC02_CreateLoanAccountwithSchmcodeforTwoWheelerRs2LandClosetheAccount"/>
+    </classes>
+</test>
+
+
+    <!-- Test 2: IssueChequeBook Test Case on Edge -->
+    <test name="TC01_TestData_Edge">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+             <class name="TestCases.TC01_Report_DLYRPTTestCase"/>
+        </classes>
+        </test>
+
+</suite>
