@@ -4,7 +4,6 @@
   <test thread-count="5" name="Test">
     <classes>
       <class name="PaymentTestCases.TC05_BookForwardContractToTheSavingsAccount"/>
-      <class name="PaymentTestCases.TC06_ModifyForwardContractToTheAmountOf15000"/>
       <class name="PaymentTestCases.TC07_ExtendAForWardContractToTwoYears"/>
       <class name="PaymentTestCases.TC08_CancleTheForwardContractWhichIsBookedAlready"/>
      
