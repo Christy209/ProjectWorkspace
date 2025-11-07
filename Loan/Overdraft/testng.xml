@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite">
+  <test name="Test">
+    <classes>
+	 <class name="TestCases.TC04_ODAccount"/>
+      <class name="TestCases.TC07_CloseOverdraftAccount"/>
+     
+    </classes>
+  </test>
+</suite>

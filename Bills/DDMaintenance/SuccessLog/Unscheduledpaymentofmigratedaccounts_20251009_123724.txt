@@ -1,0 +1,8 @@
+Unexpected issue: Error executing JavaScript
+Build info: version: '4.29.0', revision: '5fc1ec94cb'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Command: [4fedb0a5-7f3e-44d7-b6ee-0a9f518220b2, isElementDisplayed {id=cfba0c01-2e4f-4bc0-8d52-cc4afd83ebb6}]
+Capabilities {acceptInsecureCerts: false, browserName: internet explorer, browserVersion: 11, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:ieOptions: {browserAttachTimeout: 0, elementScrollBehavior: 0, enablePersistentHover: false, ie.browserCommandLineSwitches: , ie.edgechromium: true, ie.edgepath: C:\Program Files (x86)\Micr..., ie.ensureCleanSession: false, ie.fileUploadDialogTimeout: 3000, ie.forceCreateProcessApi: false, ie.ignoreprocessmatch: false, ignoreProtectedModeSettings: true, ignoreZoomSetting: true, initialBrowserUrl: http://localhost:13467/, nativeEvents: true, requireWindowFocus: true}, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Element: [[InternetExplorerDriver: internet explorer on windows (4fedb0a5-7f3e-44d7-b6ee-0a9f518220b2)] -> css selector: table.innertable]
+Session ID: 4fedb0a5-7f3e-44d7-b6ee-0a9f518220b2

@@ -1,0 +1,5 @@
+Function * SelectA - AddD - DeleteI - InquireM - ModifyU - UndeleteV - VerifyX - CancelT - Copy from TemplateL - ListR - ReconE - Ex Advice Payment   Issue Bank/Branch/EC *
+
+Demand Draft No. *      Issue Date  *
+Demand Draft Amt.   CCY *
+Scheme Code *     Template ID

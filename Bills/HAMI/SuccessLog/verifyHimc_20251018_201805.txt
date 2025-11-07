@@ -1,0 +1,2 @@
+Function * SelectA - AddI - InquireM - ModifyV - VerifyX - Cancel   Inventory Transaction. ID
+Transaction Date *

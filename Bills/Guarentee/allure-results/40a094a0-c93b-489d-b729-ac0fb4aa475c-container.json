@@ -1,0 +1,1 @@
+{"uuid":"40a094a0-c93b-489d-b729-ac0fb4aa475c","name":"FederalBank_TestCases.TC03_CollectSwapCharge","children":["22d4f874-8f6b-4b22-a525-969f85f97b78"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1759389127118,"stop":1759389129462}],"afters":[],"start":1759389127072,"stop":1759389142600}

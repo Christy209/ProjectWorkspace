@@ -1,0 +1,1 @@
+{"uuid":"7e8b7f64-4645-4cd7-be68-5080943707cf","name":"Loan.Loanverification","children":["ba480a07-9890-4862-a1ef-a78c69f1aafb"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1755669867786,"stop":1755669879093}],"afters":[],"start":1755669865118,"stop":1755669944844}

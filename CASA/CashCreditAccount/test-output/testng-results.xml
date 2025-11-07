@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-10-10T12:53:10 IST" name="UnScheduledPaymentCreationSuite" finished-at="2025-10-10T12:54:18 IST" duration-ms="67192">
+    <groups>
+    </groups>
+    <test started-at="2025-10-10T12:53:10 IST" name="UnScheduledPaymentStepsExecution" finished-at="2025-10-10T12:54:18 IST" duration-ms="67192">
+      <class name="CashCreditAccount.CloseCashCreditAccount">
+        <test-method is-config="true" signature="getDriver()[pri:0, instance:CashCreditAccount.CloseCashCreditAccount@595814a1]" started-at="2025-10-10T12:53:10 IST" name="getDriver" finished-at="2025-10-10T12:53:10 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getDriver -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:CashCreditAccount.CloseCashCreditAccount@595814a1]" started-at="2025-10-10T12:53:10 IST" name="setup" finished-at="2025-10-10T12:53:39 IST" duration-ms="28027" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="VerifyLoanAccount(Utilities.RowData,Utilities.RowData)[pri:0, instance:CashCreditAccount.CloseCashCreditAccount@595814a1]" started-at="2025-10-10T12:53:39 IST" name="VerifyLoanAccount" data-provider="testcase" finished-at="2025-10-10T12:54:18 IST" duration-ms="39051" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[RowData{headerMap={relation=014, cfid=000076518, scheme code=15101, GuardianCode=, relnCode=003, nomPcnt=100, pbPsFlg=B - Both, pbPsFreqStartDD=30, 2 nd NomineeCifId=, nextIntDrCalcDt=15/03/2023, pbPsFreqHldyStat=N - Next Day, docCode=036, tenorOfSlabInDays=3, City=, Created_AccountID=020715101100002, modeAdv=005, AddressLine2=, tenorOfSlabInMnths=12, AddressLine1=, Address Type  =Home, State=, Testcasename=CreateCashCreditAccount, NomineeCifId=100019259, despatchMode=N - No Dispatch, Second RelatedPartyflg=Y, Country=, Title =MR, sectCode=111, intRestBasis=Select, docScanFlg=N - Scan not required, drawingPowerInd=E - Equal, PostalCode=, glSubHeadCode=15101, pbPsFreqCalBase=G - Gregorian Calendar, pbPsFreqType=M - Monthly, relnType=G - Guarantor, acctHlthCode=003, Second Nominee =, noOfInstlmnts=6, expiryDate_ui=15/03/2026, CIF ID=100019259, GuardianName=, Nominee Minor=N, purpAdv=023, menu=HOAACCC, documentDate_ui=15/03/2023, 2 nd Relationship=, regValue=5, 2 nd Nomination Pcnt.=, subSectCode=120, Address Line 1=chennai}, indexList=[CreateCashCreditAccount, HOAACCC, 000076518, 15101, 15101, B - Both, M - Monthly, 30, N - Next Day, G - Gregorian Calendar, N - No Dispatch, 003, N - Scan not required, 001, Y, G - Guarantor, 003, 100019259, MR, Home, chennai, 111, 120, 023, 005, 036, 15/03/2023, 15/03/2026, E - Equal, 6, Select, 5, 100019259, 014, 100, N, , , , , , , , , , , , , 12, 3, 15/03/2023, 003, 020715101100002]}]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[RowData{headerMap={relation=, cfid=Z - Close, scheme code=, GuardianCode=, relnCode=, nomPcnt=, pbPsFlg=, pbPsFreqStartDD=, 2 nd NomineeCifId=, nextIntDrCalcDt=, pbPsFreqHldyStat=, docCode=, tenorOfSlabInDays=, City=, Created_AccountID=, modeAdv=, AddressLine2=, tenorOfSlabInMnths=, AddressLine1=, Address Type  =, State=, Testcasename=CloseCashCreditAccount, NomineeCifId=, despatchMode=, Second RelatedPartyflg=, Country=, Title =, sectCode=, intRestBasis=, docScanFlg=, drawingPowerInd=, PostalCode=, glSubHeadCode=, pbPsFreqCalBase=, pbPsFreqType=, relnType=, acctHlthCode=, Second Nominee =, noOfInstlmnts=, expiryDate_ui=, CIF ID=, GuardianName=, Nominee Minor=, purpAdv=, menu=HCAAC, documentDate_ui=, 2 nd Relationship=, regValue=, 2 nd Nomination Pcnt.=, subSectCode=, Address Line 1=}, indexList=[CloseCashCreditAccount, HCAAC, Z - Close, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ]}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- VerifyLoanAccount -->
+      </class> <!-- CashCreditAccount.CloseCashCreditAccount -->
+    </test> <!-- UnScheduledPaymentStepsExecution -->
+  </suite> <!-- UnScheduledPaymentCreationSuite -->
+</testng-results>

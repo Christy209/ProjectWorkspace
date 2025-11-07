@@ -1,0 +1,9 @@
+[2025-10-21 12:01:10] ? Exception Occurred: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: MicrosoftEdge=141.0.3537.85)
+Build info: version: '4.29.0', revision: '5fc1ec94cb'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Command: [db6e686b842595ba826fee17a78ed9de, get {url=https://bbssl19.bbssl.com:33333/fininfra/ui/SSOLogin.jsp}]
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 141.0.3537.85, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:51996}, msedge: {msedgedriverVersion: 141.0.3537.92 (180f8c4bc303..., userDataDir: C:\Users\priya\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51996/devtoo..., se:cdpVersion: 141.0.3537.85, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: db6e686b842595ba826fee17a78ed9de

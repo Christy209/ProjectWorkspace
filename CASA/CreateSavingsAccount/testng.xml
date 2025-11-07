@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite">
+  <test name="Test">
+    <classes>    
+      <class name="TestCases1.TC01_CreateSavingsAccountWith5000AmtAndCloseTheAccount"/>
+            <class name="TestCases1.TC29_CloseSavingsAccount"/>
+</classes>
+  </test>
+</suite>

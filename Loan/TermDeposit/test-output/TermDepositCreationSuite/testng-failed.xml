@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [TermDepositCreationSuite]">
+  <test thread-count="5" name="TermDepositExecution(failed)">
+    <classes>
+      <class name="TermDeposit.OpeningTermDepositAccount">
+        <methods>
+          <include name="createTDAccount" invocation-numbers="0"/>
+          <include name="setup"/>
+          <include name="getDriver"/>
+        </methods>
+      </class> <!-- TermDeposit.OpeningTermDepositAccount -->
+      <class name="TermDeposit.VerificationOfTermDeposit">
+        <methods>
+          <include name="setup"/>
+          <include name="VerifyTDAccount"/>
+          <include name="getDriver"/>
+        </methods>
+      </class> <!-- TermDeposit.VerificationOfTermDeposit -->
+      <class name="TermDeposit.ModifyTermDepositBeforeVerification">
+        <methods>
+          <include name="Verification" invocation-numbers="0"/>
+          <include name="getDriver"/>
+        </methods>
+      </class> <!-- TermDeposit.ModifyTermDepositBeforeVerification -->
+    </classes>
+  </test> <!-- TermDepositExecution(failed) -->
+</suite> <!-- Failed suite [TermDepositCreationSuite] -->

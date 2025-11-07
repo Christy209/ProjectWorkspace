@@ -1,0 +1,1 @@
+526 - More than one general ledger subhead and scheme code combination exists for this general ledger.

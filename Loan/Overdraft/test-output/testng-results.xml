@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-10-10T11:28:45 IST" name="TermDepositCreationSuite" finished-at="2025-10-10T11:29:39 IST" duration-ms="54807">
+    <groups>
+    </groups>
+    <test started-at="2025-10-10T11:28:45 IST" name="TermDepositStepsExecution" finished-at="2025-10-10T11:29:39 IST" duration-ms="54807">
+      <class name="OD.CloseOD">
+        <test-method is-config="true" signature="getDriver()[pri:0, instance:OD.CloseOD@acb5508]" started-at="2025-10-10T11:28:45 IST" name="getDriver" finished-at="2025-10-10T11:28:45 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getDriver -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:OD.CloseOD@acb5508]" started-at="2025-10-10T11:28:45 IST" name="setup" finished-at="2025-10-10T11:29:13 IST" duration-ms="28648" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="VerifyLoanAccount(Utilities.RowData,Utilities.RowData)[pri:0, instance:OD.CloseOD@acb5508]" started-at="2025-10-10T11:29:13 IST" name="VerifyLoanAccount" data-provider="testcase" finished-at="2025-10-10T11:29:39 IST" duration-ms="25946" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[RowData{headerMap={relation=13, cfid=100010907, scheme code=15009, GuardianCode=, relnCode=003, nomPcnt=100, pbPsFlg=B - Both, pbPsFreqStartDD=30, 2 nd NomineeCifId=, pbPsFreqHldyStat=N - Next Day, docCode=036, tenorOfSlabInDays=3, City=, Created_AccountID=020715009100001, modeAdv=005, AddressLine2=, tenorOfSlabInMnths=12, AddressLine1=, Address Type  =Home, State=, NomineeCifId=100024745, despatchMode=N - No Dispatch, Second RelatedPartyflg=Y, Country=, Title =MR, sectCode=111, intRestBasis=Select, docScanFlg=N - Scan not required, drawingPowerInd=E - Equal, testcasename=CreateODAccount, PostalCode=, glSubHeadCode=15009, pbPsFreqCalBase=G - Gregorian Calendar, pbPsFreqType=M - Monthly, relnType=G - Guarantor, Second Nominee =, noOfInstlmnts=6, expiryDate_ui=15/03/2026, CIF ID=100018703, GuardianName=, Nominee Minor=N, purpAdv=023, menu=HOAACOD, documentDate_ui=15/03/2023, 2 nd Relationship=, regValue=5, 2 nd Nomination Pcnt.=, subSectCode=120, Address Line 1=chennai}, indexList=[CreateODAccount, HOAACOD, 100010907, 15009, 15009, B - Both, M - Monthly, 30, N - Next Day, G - Gregorian Calendar, N - No Dispatch, 003, N - Scan not required, 001, Y, G - Guarantor, 003, 100018703, MR, Home, chennai, 111, 120, 023, 005, 036, 15/03/2023, 15/03/2026, E - Equal, 6, Select, 5, 100024745, 13, 100, N, , , , , , , , , , , , , 12, 3, 020715009100001]}]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[RowData{headerMap={relation=, cfid=Z - Close, scheme code=, GuardianCode=, relnCode=, nomPcnt=, pbPsFlg=, pbPsFreqStartDD=, 2 nd NomineeCifId=, pbPsFreqHldyStat=, docCode=, tenorOfSlabInDays=, City=, Created_AccountID=, modeAdv=, AddressLine2=, tenorOfSlabInMnths=, AddressLine1=, Address Type  =, State=, NomineeCifId=, despatchMode=, Second RelatedPartyflg=, Country=, Title =, sectCode=, intRestBasis=, docScanFlg=, drawingPowerInd=, testcasename=close, PostalCode=, glSubHeadCode=, pbPsFreqCalBase=, pbPsFreqType=, relnType=, Second Nominee =, noOfInstlmnts=, expiryDate_ui=, CIF ID=, GuardianName=, Nominee Minor=, purpAdv=, menu=HCAAC, documentDate_ui=, 2 nd Relationship=, regValue=, 2 nd Nomination Pcnt.=, subSectCode=, Address Line 1=}, indexList=[close, HCAAC, Z - Close, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ]}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- VerifyLoanAccount -->
+      </class> <!-- OD.CloseOD -->
+    </test> <!-- TermDepositStepsExecution -->
+  </suite> <!-- TermDepositCreationSuite -->
+</testng-results>

@@ -1,0 +1,27 @@
+Interest Details
+Pay Interest YesNo.   Collect Interest YesNo.
+Credit Interest Pcnt. Min./Max.   Min./Max. Debit Interest Pcnt.
+Customer Preferential Interest (Cr.)   Customer Preferential Interest (Dr.)
+A/c. Credit Preferential Interest   A/c. Debit Preferential Interest
+Channel Preferential Interest (Cr.)   Channel Preferential Interest (Dr.)
+Interest Credit A/c. SelectO - Operative A/c.S - Original A/c.T - Payment SystemL - Parking A/c.   Interest Debit A/c. SelectO - Operative A/c.E - Operative or Original A/c.P - Operative/Parking A/c.S - Original A/c.L - Parking A/c.
+Interest Debit A/c. ID
+Interest Credit A/c. ID
+Interest Rate Code *
+A/c. Pegged * Yes   No.   Relative
+Pegging Review Date Pegging Frequency (MM/DD)
+Interest Calculation Frequency (Cr.) SelectD - DailyF - FortnightlyH - Half YearlyM - MonthlyQ - QuarterlyW - WeeklyY - YearlyWeek1 - First Week2 - Second Week3 - Third week4 - Fourth weekL - Last WeekM - Middle week
+Day1 - Sunday2 - Monday3 - Tuesday4 - Wednesday5 - Thursday6 - Friday7 - SaturdayDate01020304050607080910111213141516171819202122232425262728293031HolidayN - Next DayP - Previous dayS - Skip
+SelectG - Gregorian CalendarH - Hijri Calendar   Next Interest Calculation Date (Cr.)
+Interest Calculation Frequency (Dr.) SelectD - DailyF - FortnightlyH - Half YearlyM - MonthlyQ - QuarterlyW - WeeklyY - YearlyWeek1 - First Week2 - Second Week3 - Third week4 - Fourth weekL - Last WeekM - Middle week
+SelectG - Gregorian CalendarH - Hijri Calendar   Next Interest Calculation Date (Dr.)
+Interest Compounding Frequency (Dr.) SelectD - DailyM - MonthlyN - No CompoundingQ - Quarterly   Credit Interest Compounding Frequency SelectD - DailyH - Half YearlyM - MonthlyN - No CompoundingQ - QuarterlyR - Yearly
+Debit Compounding Rest Indicator Month End A/c. Opening Date None   Credit Compounding Rest Indicator Month End A/c. Opening Date None
+Apply Discounted Interest Rate for Debit YesNo   Waive Min. Interest YesNo
+Rule Code for Interest Comparison
+APY  0.000000        APYE  0.000000
+Tax Details
+Tax Category SelectE - Customer Tax Deducted at Source eligibilityN - No TaxT - Customer Tax Deducted at SourceW - A/c. Level Withholding Tax   Withholding Tax Level SelectA - A/c. LevelC - Customer LevelS - Scheme Level
+Withholding Tax Floor Limit   Withholding Tax Pcnt.
+Withholding Tax Borne By None   All   Principal A/c. Holder Only
+Tax Deducted at Source Operative A/c. ID

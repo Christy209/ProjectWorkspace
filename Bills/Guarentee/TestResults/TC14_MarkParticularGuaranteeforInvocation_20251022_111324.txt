@@ -1,0 +1,8 @@
+[2025-10-22 11:13:24] ? Exception Occurred: unexpected alert open: {Alert text : Do you want to reset the previous session and re-login ?}
+  (Session info: MicrosoftEdge=141.0.3537.92): Do you want to reset the previous session and re-login ?
+Build info: version: '4.29.0', revision: '5fc1ec94cb'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.12'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Command: [4d792c1ea6002db80cf89bb7c534c514, get {url=https://bbssl19.bbssl.com:33333/fininfra/ui/SSOLogin.jsp}]
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 141.0.3537.92, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:59029}, msedge: {msedgedriverVersion: 141.0.3537.92 (180f8c4bc303..., userDataDir: C:\Users\chris\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59029/devtoo..., se:cdpVersion: 141.0.3537.92, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 4d792c1ea6002db80cf89bb7c534c514

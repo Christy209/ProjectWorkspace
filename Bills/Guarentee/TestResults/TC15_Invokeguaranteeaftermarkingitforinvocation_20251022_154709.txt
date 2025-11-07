@@ -1,0 +1,2 @@
+[2025-10-22 15:48:07] 003BG250057
+[2025-10-22 15:49:05] Guarantee No. 003BG250057 verified successfully. Invocation Transaction ID : S110992 .

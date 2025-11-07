@@ -1,0 +1,2 @@
+[2025-10-21 14:34:37] 003BG250054
+[2025-10-21 14:36:01] Guarantee No. 003BG250054 verified successfully. Invocation Transaction ID : S110959 .

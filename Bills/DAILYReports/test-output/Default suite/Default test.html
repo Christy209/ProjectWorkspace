@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>TestNG:  Default test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Default test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Fri Oct 10 12:13:01 IST 2025</td>
+</tr>
+<tr><td>Total time:</td><td>146 seconds (146613 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='TermDeposit.OpeningTermDepositAccount.createTDAccount()'><b>createTDAccount</b><br>Test class: TermDeposit.OpeningTermDepositAccount<br>Parameters: RowData{headerMap={GL Code=, dueDate=11/10/2023, TestCaseName=CreateTDAccountWithAllFields, relation=001, repayAcct=0003LN510085, GuardianCode=, natAdv=001, relnCode=11, modeOfOperCode=ADM, nomPcnt=100, operAcct=CRBAL, maxRenew=2, Advance Type=42, SchmCode=1404, 2 nd NomineeCifId=, pegFreqMnths=03, DepositPeriod=12, relativeStaffId=15, docCode=ADHAR, City=, Created_AccountID=003140400000030, AddressLine2=, modeAdv=DIRCT, AddressLine1=KERALA, Address Type  =Home, State=, NomineeCifId=R0003533, Country=, Second RelatedPartyflg=Y, Title =MR, sectCode=AGRI, acctOpenDate_ui=11/10/2023, docScanFlg=S - Scanned, renewSchm=, renewCrncy=, PostalCode=, occCode=002, relnType=J - Joint Holder, renewMths=, maturityDate_ui=08-08-2026, Second Nominee =, Menu=HOAACTD, acctPrefIntCr=2, depAmt=50,000.00, CIF ID=R0003867, autoClosureFlg=Y, pegFreqDay=30, GuardianName=, Nominee Minor=N, custPrefIntCr=2, 2 nd Relationship=, funcode=O - Open, regValue=5, 2 nd Nomination Pcnt.=, valueDate_ui=08/07/2019, chanPrefIntCr=1, subSectCode=10010, RenewalClosureRadioButton=No, Address Line 1=chennai, renewGLSubHead=}, indexList=[CreateTDAccountWithAllFields, HOAACTD, R000002384, 1404, , 11/10/2023, ADM, 15, 2, 2, 1, 03, 30, 08/07/2019, 50,000.00, 12, 08-08-2026, 0003LN510085, CRBAL, No, Y, 2, , , , , 5, R0003533, 001, 100, N, , , KERALA, , , , , , , , , , 012, Y, J - Joint Holder, 11, R0003867, MR, Home, chennai, ADHAR, 11/10/2023, S - Scanned, AGRI, 10010, 002, DIRCT, 42, 001, 003140400000030, O - Open]}</td>
+<td></td>
+<td>125</td>
+<td>TermDeposit.OpeningTermDepositAccount@4a07d605</td></tr>
+</table><p>
+</body>
+</html>

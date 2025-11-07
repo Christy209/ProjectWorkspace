@@ -1,0 +1,1 @@
+[2025-10-22 11:14:00] ? Exception Occurred: Expected condition failed: waiting for presence of element located by: By.id: menuSelect (tried for 10 second(s) with 500 milliseconds interval)

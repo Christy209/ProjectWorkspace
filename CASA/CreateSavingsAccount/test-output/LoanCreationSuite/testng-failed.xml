@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [LoanCreationSuite]">
+  <test thread-count="5" name="LoanStepsExecution(failed)">
+    <classes>
+      <class name="Loan.Loanverification">
+        <methods>
+          <include name="setup"/>
+          <include name="VerifyLoanAccount"/>
+          <include name="getDriver"/>
+        </methods>
+      </class> <!-- Loan.Loanverification -->
+      <class name="Loan.LoanModifybeforeverification">
+        <methods>
+          <include name="CreateLoan" invocation-numbers="0"/>
+          <include name="getDriver"/>
+        </methods>
+      </class> <!-- Loan.LoanModifybeforeverification -->
+      <class name="Loan.LoanModifyAfterVerification">
+        <methods>
+          <include name="CreateLoan"/>
+          <include name="setup"/>
+          <include name="getDriver"/>
+        </methods>
+      </class> <!-- Loan.LoanModifyAfterVerification -->
+    </classes>
+  </test> <!-- LoanStepsExecution(failed) -->
+</suite> <!-- Failed suite [LoanCreationSuite] -->

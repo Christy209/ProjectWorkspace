@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="FunctionalityTesting" verbose="1" parallel="false">
+
+    <listeners>
+        <listener class-name="Utilities.TestReportListener"/>
+    </listeners>
+
+    <test name="FunctionalityTesting">
+        <classes>
+        
+            <class name="PaymentTestCases.TC04_IssuenewguaranteewithexistingCIFID"/>
+            <class name="PaymentTestCases.TC14_MarkParticularGuaranteeforInvocation"/>
+            <class name="PaymentTestCases.TC15_Invokeguaranteeaftermarkingitforinvocation"/>
+            <class name="PaymentTestCases.TC16_CloseTheguaranteeWhichIsAlreadyInvoked"/>
+          
+        </classes>
+    </test>
+
+</suite>

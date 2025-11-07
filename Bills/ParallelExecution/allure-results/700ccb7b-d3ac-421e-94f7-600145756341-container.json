@@ -1,0 +1,1 @@
+{"uuid":"700ccb7b-d3ac-421e-94f7-600145756341","name":"CASA.CreateSavingsAccount","children":["5f06c0dc-aa21-4af2-8ed2-cfd23bb22251"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1755673033077,"stop":1755673036628}],"afters":[],"start":1755673033070,"stop":1755673068285}

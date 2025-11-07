@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Bank Test Suite">
+  <test name="Loan Module Tests">
+    <classes>
+	  <class name="TestCases.TC09_CreateLoanAccountUsingcolletralLink"/>
+      <class name="TestCases.TC01_CreateLoanAccountAndVerify"/>
+      <class name="TestCases.TC05_LoanDisburstmentAndClose"/>
+	  
+    </classes>
+  </test>
+</suite>
+

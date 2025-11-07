@@ -1,0 +1,4 @@
+Function * SelectZ - CloseL - Trial CloseT - Transfer Out
+A/c. ID *
+Closure Value Date *
+Withdrawal Amt. (Principal) *
