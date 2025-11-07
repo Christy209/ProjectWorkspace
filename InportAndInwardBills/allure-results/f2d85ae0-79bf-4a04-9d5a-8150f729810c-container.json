@@ -1,0 +1,1 @@
+{"uuid":"f2d85ae0-79bf-4a04-9d5a-8150f729810c","name":"TestCases.TC01_Payments_LodgeOutwardBill","children":["d7a16ae7-534d-471c-bb04-d51e36eaee6c"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1761298693686,"stop":1761298700368}],"afters":[],"start":1761298693647,"stop":1761298750306}

@@ -1,0 +1,1 @@
+{"uuid":"102acea5-ba7c-46bd-bc6b-effb9dca53f5","name":"TestCases.TC02_Realize","children":["dd28eb09-6324-4f43-8ba0-8a265bb2570d"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1761817275387,"stop":1761817278417}],"afters":[],"start":1761817275348,"stop":1761817365191}
