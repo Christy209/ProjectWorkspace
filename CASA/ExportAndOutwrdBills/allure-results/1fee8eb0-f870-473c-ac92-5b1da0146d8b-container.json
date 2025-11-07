@@ -1,0 +1,1 @@
+{"uuid":"1fee8eb0-f870-473c-ac92-5b1da0146d8b","name":"TestCases.TC02_InWard_Delink","children":["b283f7ef-2f37-4d77-90e2-ac3a45a007fe"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1762242066104,"stop":1762242066172}],"afters":[],"start":1762241814090,"stop":1762242117801}

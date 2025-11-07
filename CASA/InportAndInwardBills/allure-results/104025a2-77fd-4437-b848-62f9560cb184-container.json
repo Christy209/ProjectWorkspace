@@ -1,0 +1,1 @@
+{"uuid":"104025a2-77fd-4437-b848-62f9560cb184","name":"TestCases.TC03_Unclose_Bill","children":["d059c1fc-2655-4234-833f-1ddb5d592c70"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1761632682602,"stop":1761632687594}],"afters":[],"start":1761632682558,"stop":1761632727626}

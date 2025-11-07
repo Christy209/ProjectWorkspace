@@ -1,0 +1,1 @@
+{"uuid":"fe35a524-52ba-4735-920a-3cfb903b89cb","name":"TestCases.TC06_Close_Bill","children":["c4e614e7-a9ed-45fb-924b-5fe5586ebf7c"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1761632321987,"stop":1761632326731}],"afters":[],"start":1761632321939,"stop":1761632417106}

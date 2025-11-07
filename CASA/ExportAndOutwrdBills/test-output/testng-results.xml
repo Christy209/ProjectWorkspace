@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-11-06T12:24:31 IST" name="Suite" finished-at="2025-11-06T12:35:44 IST" duration-ms="673606">
+    <groups>
+    </groups>
+    <test started-at="2025-11-06T12:24:31 IST" name="FuntionalityTest" finished-at="2025-11-06T12:35:44 IST" duration-ms="673606">
+      <class name="TestCases.TCO4_Outward_FreeDelivery">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases.TCO4_Outward_FreeDelivery@45385f75]" started-at="2025-11-06T12:33:16 IST" name="setup" finished-at="2025-11-06T12:33:16 IST" duration-ms="48" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="runTest()[pri:0, instance:TestCases.TCO4_Outward_FreeDelivery@45385f75]" started-at="2025-11-06T12:33:16 IST" name="runTest" finished-at="2025-11-06T12:35:44 IST" duration-ms="148105" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runTest -->
+      </class> <!-- TestCases.TCO4_Outward_FreeDelivery -->
+      <class name="TestCases.TC06_Export_Amend_Bill">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases.TC06_Export_Amend_Bill@1c9b0314]" started-at="2025-11-06T12:30:11 IST" name="setup" finished-at="2025-11-06T12:30:11 IST" duration-ms="216" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="runTest()[pri:0, instance:TestCases.TC06_Export_Amend_Bill@1c9b0314]" started-at="2025-11-06T12:30:11 IST" name="runTest" finished-at="2025-11-06T12:33:16 IST" duration-ms="184570" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runTest -->
+      </class> <!-- TestCases.TC06_Export_Amend_Bill -->
+      <class name="TestCases.TC05_Accept_The_Lodge">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases.TC05_Accept_The_Lodge@1f9f6368]" started-at="2025-11-06T12:26:42 IST" name="setup" finished-at="2025-11-06T12:26:42 IST" duration-ms="57" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="runTest()[pri:0, instance:TestCases.TC05_Accept_The_Lodge@1f9f6368]" started-at="2025-11-06T12:26:42 IST" name="runTest" finished-at="2025-11-06T12:30:11 IST" duration-ms="208897" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runTest -->
+      </class> <!-- TestCases.TC05_Accept_The_Lodge -->
+      <class name="TestCases.TC01_Payments_LodgeOutwardBill">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases.TC01_Payments_LodgeOutwardBill@1df8da7a]" started-at="2025-11-06T12:24:31 IST" name="setup" finished-at="2025-11-06T12:24:36 IST" duration-ms="4421" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="runTest()[pri:0, instance:TestCases.TC01_Payments_LodgeOutwardBill@1df8da7a]" started-at="2025-11-06T12:24:36 IST" name="runTest" finished-at="2025-11-06T12:26:42 IST" duration-ms="126228" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runTest -->
+      </class> <!-- TestCases.TC01_Payments_LodgeOutwardBill -->
+    </test> <!-- FuntionalityTest -->
+  </suite> <!-- Suite -->
+</testng-results>

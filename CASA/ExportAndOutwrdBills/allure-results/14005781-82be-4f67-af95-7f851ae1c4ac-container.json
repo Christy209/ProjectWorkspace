@@ -1,0 +1,1 @@
+{"uuid":"14005781-82be-4f67-af95-7f851ae1c4ac","name":"TestCases.TCO4_Outward_FreeDelivery","children":["32281470-36d6-4df8-b9a4-0cbe49f6bf56"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1762408669185,"stop":1762408669239}],"afters":[],"start":1762408531531,"stop":1762408669430}

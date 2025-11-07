@@ -1,0 +1,1 @@
+{"uuid":"4e113f64-46a3-43e1-ad9c-f913abed6085","name":"TestCases.TC03_Close_The_Lodge","children":["63f38da2-ab10-40f2-a823-97fe8940cfa5"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1761554065163,"stop":1761554069846}],"afters":[],"start":1761554065118,"stop":1761554117662}

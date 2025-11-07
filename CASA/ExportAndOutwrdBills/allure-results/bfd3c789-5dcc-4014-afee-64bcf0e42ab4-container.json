@@ -1,0 +1,1 @@
+{"uuid":"bfd3c789-5dcc-4014-afee-64bcf0e42ab4","name":"TestCases.TC05_Accept_The_Lodge","children":["0263c250-d0ec-40fe-a16c-e93f8782b908"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1762412202741,"stop":1762412202797}],"afters":[],"start":1762412071190,"stop":1762412744919}
