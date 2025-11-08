@@ -1,1 +1,0 @@
-{"uuid":"b1738d7c-b35b-4b6b-8b49-6714860da92d","name":"TestCases.TC04_Inward_Protest","children":["998bc14c-8cd4-460e-8f1a-fae1ecd82558"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1761807675048,"stop":1761807677282}],"afters":[],"start":1761807675014,"stop":1761807726092}

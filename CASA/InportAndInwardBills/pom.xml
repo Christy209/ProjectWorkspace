@@ -106,6 +106,7 @@
    <artifactId>allure-testng</artifactId>
    <version>2.29.1</version>
 </dependency>
+
 <!-- AExcel screenshot -->
 	<dependency>
 	  <groupId>net.java.dev.jna</groupId>

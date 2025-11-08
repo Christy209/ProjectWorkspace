@@ -1,7 +1,11 @@
 package TestCases;
 
+import java.io.ByteArrayInputStream;
 import java.time.Duration;
 import java.util.Map;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -14,6 +18,8 @@ import Utilities.LogOut;
 import Utilities.Login;
 import Utilities.RowData;
 import Utilities.TestResultLogger;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 
 public class TC01_Inward_Lodge_Bill {
 	private WebDriver driver;
@@ -94,6 +100,13 @@ public class TC01_Inward_Lodge_Bill {
                 TestResultLogger.log(logFile, "⚠️ Logout failed at end: " + e.getMessage());
             }
         }
+        
 }
-}
+    
 
+@Step("Capture Screenshot")
+public void captureScreenshot() {
+    byte[] screenshot = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
+    Allure.addAttachment("Screenshot", new ByteArrayInputStream(screenshot));
+}
+}

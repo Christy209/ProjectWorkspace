@@ -1,1 +1,0 @@
-{"uuid":"80264561-a187-4e0e-8b4c-1783f6052c47","name":"TestCases.TC01_Inward_Lodge_Bill","children":["a04ddf0c-b5d5-4fb8-ab1c-33056e1e53fe"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1762178462740,"stop":1762178471311}],"afters":[],"start":1762178462666,"stop":1762178479573}
