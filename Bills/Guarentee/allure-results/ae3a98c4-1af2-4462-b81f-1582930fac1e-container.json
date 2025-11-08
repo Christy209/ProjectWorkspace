@@ -1,1 +1,0 @@
-{"uuid":"ae3a98c4-1af2-4462-b81f-1582930fac1e","name":"PaymentTestCases.TC11_AmendingDocumentaryCredit","children":["a9f55a86-7f43-4512-aa77-30ba3e3e143b"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1760436496638,"stop":1760436498864}],"afters":[],"start":1760436496575,"stop":1760436615867}

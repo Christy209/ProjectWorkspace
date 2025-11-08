@@ -1,1 +1,0 @@
-{"uuid":"a7e6b45d-b93f-470b-b3a6-e66a4b1820b6","name":"PaymentTestCases.TC05_BookForwardContract","children":["60e40bc7-edc5-4a44-80b8-372b5dbd6dd0"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1760334981315,"stop":1760334984517}],"afters":[],"start":1760334981279,"stop":1760335029420}
