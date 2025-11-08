@@ -1,1 +1,0 @@
-{"uuid":"01798545-0d63-43c0-a9c8-a360200bcef4","name":"PaymentTestCases.TC05_MNTFWC","children":["4bd3fb72-4dc7-4675-9dc8-bd756619745c"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1760527940788,"stop":1760527944241}],"afters":[],"start":1760527940748,"stop":1760527994504}
