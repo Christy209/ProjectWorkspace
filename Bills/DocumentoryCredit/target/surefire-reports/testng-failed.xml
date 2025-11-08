@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [FunctionalityTesting]" guice-stage="DEVELOPMENT" verbose="0">
+  <listeners>
+    <listener class-name="Utilities.TestReportListener"/>
+  </listeners>
+  <test thread-count="5" name="FunctionalityTesting(failed)" verbose="0">
+    <classes>
+      <class name="PaymentTestCases.TC09_CopyingDocumentaryCredit">
+        <methods>
+          <include name="runTest"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- PaymentTestCases.TC09_CopyingDocumentaryCredit -->
+      <class name="PaymentTestCases.TC11_AmendingDocumentaryCredit">
+        <methods>
+          <include name="runTest"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- PaymentTestCases.TC11_AmendingDocumentaryCredit -->
+      <class name="PaymentTestCases.TC10_AdviseDocumentaryCredit">
+        <methods>
+          <include name="setup"/>
+          <include name="runTest"/>
+        </methods>
+      </class> <!-- PaymentTestCases.TC10_AdviseDocumentaryCredit -->
+      <class name="PaymentTestCases.TC02_IssuingdocumentaryCreditMaintenance">
+        <methods>
+          <include name="runTest"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- PaymentTestCases.TC02_IssuingdocumentaryCreditMaintenance -->
+    </classes>
+  </test> <!-- FunctionalityTesting(failed) -->
+</suite> <!-- Failed suite [FunctionalityTesting] -->
