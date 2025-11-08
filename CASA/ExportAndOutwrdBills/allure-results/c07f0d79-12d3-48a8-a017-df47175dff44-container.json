@@ -1,1 +1,0 @@
-{"uuid":"c07f0d79-12d3-48a8-a017-df47175dff44","name":"TestCases.TC03_Dishonor_Of_Inward_Bill","children":["0804e771-b240-4c8b-ab25-c5a3cd035db6"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1761808681843,"stop":1761808681897}],"afters":[],"start":1761808357118,"stop":1761809235126}
