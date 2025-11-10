@@ -1,1 +1,0 @@
-{"uuid":"659e1c2d-4fac-45aa-821c-f0224608439b","name":"CASA.VerificationOfSavingsAccount","children":["087fcdb6-b397-4bb1-af2f-478fa3dce24d"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1755669867775,"stop":1755669879053}],"afters":[],"start":1755669865086,"stop":1755669890288}
