@@ -1,2 +1,0 @@
-[2025-10-21 14:32:22] Guarantee No. 003BG250054 Invoke marked successfully.
-[2025-10-21 14:33:30] ? Guarantee No. 003BG250054 verified successfully.
