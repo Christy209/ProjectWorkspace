@@ -6,7 +6,8 @@
     </listeners>
   <test thread-count="5" name="Test">
     <classes>
-	<class name="CustomMenuTests.ExcelUpdateTest"/>
+	<class name="CustomMenuTests.CustomMenuTest"/>
+	
       <class name="CustomMenuTestcase.TC01_AddVerifyAndCancelPradhanMantriSurakshaBimaYojna"/>
       <class name="CustomMenuTestcase.TC02_AddPradhanMantriSurakshaBimaYojnaAndCancleBeforeVerification"/>
       <class name="CustomMenuTestcase.TC03_ModifyPradhanMantriSurakshaBimaYojnaWhichIsAlreadyAdded"/>
