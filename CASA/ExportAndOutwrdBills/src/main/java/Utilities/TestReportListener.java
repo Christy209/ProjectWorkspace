@@ -1,6 +1,9 @@
 package Utilities;
 
 import org.testng.*;
+
+import io.qameta.allure.Allure;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -12,7 +15,7 @@ public class TestReportListener implements ITestListener {
     private XWPFDocument document;
     private String outputFolder = "test-output/TestReports";
     private String individualResultFolder = "TestResults";
-    private String latestCopyFolder = "test-output/LatestTxtCopy";  // ✅ new folder for latest txt copies
+    private String latestCopyFolder = "test-output/LatestTxtCopy";  
     private String fileName;
     private int passedCount = 0;
     private int failedCount = 0;
@@ -24,7 +27,7 @@ public class TestReportListener implements ITestListener {
     public void onStart(ITestContext context) {
         try {
             new File(outputFolder).mkdirs();
-            new File(latestCopyFolder).mkdirs(); // ✅ create new folder
+            new File(latestCopyFolder).mkdirs();
             suiteStartTime = System.currentTimeMillis();
 
             String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -58,119 +61,23 @@ public class TestReportListener implements ITestListener {
         XWPFRun r = p.createRun();
         r.setText("⚠️ SKIPPED: " + result.getMethod().getMethodName());
         r.setFontSize(11);
-        r.setColor("FFA500"); // Orange for skipped
+        r.setColor("FFA500");
         skippedCount++;
         totalTestCount++;
     }
 
-//    private void addIndividualTestResult(ITestResult result, boolean passed) {
-//        try {
-//            String testCaseName = result.getTestClass().getRealClass().getSimpleName();
-//            String methodName = result.getMethod().getMethodName();
-//
-//            // ✅ Copy the latest txt file for this test case name
-//            copyLatestTxtFileForTest(testCaseName);
-//
-//            // Header: Test case
-//            XWPFParagraph header = document.createParagraph();
-//            XWPFRun title = header.createRun();
-//            title.setText("📄 Test Case: " + testCaseName);
-//            title.setBold(true);
-//            title.setFontSize(12);
-//
-//            // ✅/❌ Status immediately after header
-//            XWPFParagraph statusPara = document.createParagraph();
-//            XWPFRun statusRun = statusPara.createRun();
-//            statusRun.setFontSize(11);
-//            statusRun.setBold(true);
-//            if (passed) {
-//                statusRun.setText("✅ PASSED:");
-//                statusRun.setColor("008000");
-//            } else {
-//                statusRun.setText("❌ FAILED:");
-//                statusRun.setColor("FF0000");
-//            }
-//
-//            // Search for corresponding txt file
-//            File folder = new File(individualResultFolder);
-//            File[] files = folder.listFiles((dir, name) ->
-//                    name.toLowerCase().contains(testCaseName.toLowerCase()) ||
-//                    name.toLowerCase().contains(methodName.toLowerCase()));
-//
-//            boolean txtFound = false;
-//
-//            if (files != null && files.length > 0) {
-//                Arrays.sort(files, Comparator.comparingLong(File::lastModified).reversed());
-//                File latestFile = files[0];
-//                txtFound = true;
-//
-//                try (BufferedReader reader = new BufferedReader(new FileReader(latestFile))) {
-//                    String line;
-//                    while ((line = reader.readLine()) != null) {
-//                        if (line.trim().isEmpty()) continue;
-//
-//                        XWPFParagraph para = document.createParagraph();
-//                        XWPFRun run = para.createRun();
-//                        run.setFontSize(10);
-//
-//                        // Color coding
-//                        if (line.contains("❌")) {
-//                            run.setColor("FF0000");
-//                            run.setBold(true);
-//                        } else if (line.contains("✅")) {
-//                            run.setColor("008000");
-//                            run.setBold(true);
-//                        } else {
-//                            run.setColor("000000"); // black for normal messages
-//                        }
-//
-//                        run.setText(line);
-//                    }
-//                }
-//            }
-//
-//            // If txt not found, fallback
-//            if (!txtFound) {
-//                XWPFParagraph fallback = document.createParagraph();
-//                XWPFRun r = fallback.createRun();
-//                r.setFontSize(10);
-//                r.setColor("808080"); // gray
-//                r.setText("[No detailed logs found]");
-//            }
-//
-//            // If failed, add reason at the end
-//            if (!passed && result.getThrowable() != null) {
-//                XWPFParagraph reasonPara = document.createParagraph();
-//                XWPFRun reasonRun = reasonPara.createRun();
-//                reasonRun.setFontSize(10);
-//                reasonRun.setColor("FF0000");
-//                reasonRun.setBold(true);
-//                reasonRun.setText("↳ Reason: ❌ " + result.getThrowable().getMessage());
-//            }
-//
-//            // Blank line after each test
-//            document.createParagraph().createRun().addBreak();
-//
-//        } catch (Exception e) {
-//            XWPFParagraph errorPara = document.createParagraph();
-//            XWPFRun r = errorPara.createRun();
-//            r.setText("❌ Error writing result for " + result.getName() + ": " + e.getMessage());
-//            r.setColor("FF0000");
-//            r.setFontSize(10);
-//        }
-//    }
     private void addIndividualTestResult(ITestResult result, boolean passed) {
         try {
             String testCaseName = result.getTestClass().getRealClass().getSimpleName();
 
-            // 🔹 Header
+            // Header
             XWPFParagraph header = document.createParagraph();
             XWPFRun title = header.createRun();
             title.setText("📄 Test Case: " + testCaseName);
             title.setBold(true);
             title.setFontSize(12);
 
-            // 🔹 Determine status
+            // Status
             XWPFParagraph statusPara = document.createParagraph();
             XWPFRun statusRun = statusPara.createRun();
             statusRun.setFontSize(11);
@@ -190,14 +97,15 @@ public class TestReportListener implements ITestListener {
                 statusRun.setColor("FF0000");
             }
 
-            // 🔹 Get the latest .txt log file for this test
+            // Get latest .txt log for this test
             File folder = new File(individualResultFolder);
             File[] txtFiles = folder.listFiles((dir, name) ->
                     name.toLowerCase().startsWith(testCaseName.toLowerCase()) && name.endsWith(".txt"));
+            File latestTxt = null; // declare only once
 
             if (txtFiles != null && txtFiles.length > 0) {
                 Arrays.sort(txtFiles, Comparator.comparingLong(File::lastModified).reversed());
-                File latestTxt = txtFiles[0]; // most recent log file
+                latestTxt = txtFiles[0]; // assign, do not redeclare
 
                 try (BufferedReader br = new BufferedReader(new FileReader(latestTxt))) {
                     String line;
@@ -208,7 +116,6 @@ public class TestReportListener implements ITestListener {
                         XWPFRun run = para.createRun();
                         run.setFontSize(10);
 
-                        // 🎨 Color based on content
                         if (line.contains("❌") || line.toLowerCase().contains("error") ||
                             line.toLowerCase().contains("failed") || line.toLowerCase().contains("exception")) {
                             run.setColor("FF0000");
@@ -224,7 +131,6 @@ public class TestReportListener implements ITestListener {
                     }
                 }
             } else {
-                // No txt found
                 XWPFParagraph para = document.createParagraph();
                 XWPFRun run = para.createRun();
                 run.setFontSize(10);
@@ -232,7 +138,36 @@ public class TestReportListener implements ITestListener {
                 run.setText("[No log file found for " + testCaseName + "]");
             }
 
-            // 🔹 Add failure / skip reason
+            // ------------------- Attach TXT log to Allure -------------------
+//            try {
+//                if (latestTxt != null && latestTxt.exists()) {
+//                    try (InputStream is = new FileInputStream(latestTxt)) {
+//                        Allure.addAttachment(
+//                            testCaseName + "_Log", // Name shown in Allure
+//                            "text/plain",          // MIME type
+//                            is,                    // InputStream of the TXT file
+//                            ".txt"                 // File extension
+//                        );
+//                    }
+//                }
+//            } catch (Exception e) {
+//                System.out.println("❌ Error attaching TXT to Allure for " + testCaseName + ": " + e.getMessage());
+//            }
+         // ------------------- Attach TXT log to Allure as separate attachment -------------------
+            if (latestTxt != null && latestTxt.exists()) {
+                try (InputStream is = new FileInputStream(latestTxt)) {
+                    Allure.getLifecycle().addAttachment(
+                        testCaseName + "_Log.txt",  // Name of attachment in Allure
+                        "text/plain",               // MIME type
+                        ".txt",                     // File extension
+                        is                          // InputStream
+                    );
+                } catch (Exception e) {
+                    System.out.println("❌ Error attaching TXT to Allure for " + testCaseName + ": " + e.getMessage());
+                }
+            }
+
+            // Add failure / skip reason
             if (throwable != null) {
                 XWPFParagraph reasonPara = document.createParagraph();
                 XWPFRun reasonRun = reasonPara.createRun();
@@ -248,7 +183,7 @@ public class TestReportListener implements ITestListener {
                 }
             }
 
-            // Blank line after each test
+            // Blank line
             document.createParagraph().createRun().addBreak();
 
         } catch (Exception e) {
@@ -260,9 +195,8 @@ public class TestReportListener implements ITestListener {
         }
     }
 
-    // ✅ Utility method: Copy the latest .txt file for the current test case
-    @SuppressWarnings("unused")
-	private void copyLatestTxtFileForTest(String testCaseName) {
+
+    private void copyLatestTxtFileForTest(String testCaseName) {
         try {
             File folder = new File(individualResultFolder);
             File[] files = folder.listFiles((dir, name) ->
@@ -276,10 +210,6 @@ public class TestReportListener implements ITestListener {
                 Path destination = Paths.get(latestCopyFolder, latestFile.getName());
 
                 Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
-
-                System.out.println("📁 Copied latest txt for " + testCaseName + ": " + latestFile.getName());
-            } else {
-                System.out.println("⚠️ No matching .txt file found for " + testCaseName);
             }
         } catch (Exception e) {
             System.out.println("❌ Error copying latest txt for " + testCaseName + ": " + e.getMessage());
@@ -294,7 +224,7 @@ public class TestReportListener implements ITestListener {
             long minutes = (totalDurationMs / 1000) / 60;
             long seconds = (totalDurationMs / 1000) % 60;
 
-            // Separator before summary
+         // Separator before summary
             XWPFParagraph separator1 = document.createParagraph();
             XWPFRun sepRun1 = separator1.createRun();
             sepRun1.setText("============================================================");
@@ -328,12 +258,32 @@ public class TestReportListener implements ITestListener {
             FileOutputStream out = new FileOutputStream(fileName);
             document.write(out);
             out.close();
+            // Save Word document
+
+            // Save TXT version in allure-results
+            new File("allure-results").mkdirs();
+            String txtFileName = "allure-results/Functionality_TestResult_" +
+                    new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".txt";
+            saveAsTxt(document, txtFileName);
+
             document.close();
 
-            // Keep only 10 latest reports
+            // Keep only 10 latest Word reports
             maintainLatestFiles(outputFolder, 10);
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveAsTxt(XWPFDocument doc, String txtPath) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(txtPath))) {
+            for (XWPFParagraph para : doc.getParagraphs()) {
+                writer.write(para.getText());
+                writer.newLine();
+            }
+            System.out.println("✅ Text version saved to: " + txtPath);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
