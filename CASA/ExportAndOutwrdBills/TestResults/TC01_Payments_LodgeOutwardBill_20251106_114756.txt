@@ -1,2 +1,0 @@
-[2025-11-06 11:49:08] Bill ID - 3356 Lodged successfully.
-[2025-11-06 11:49:48] Bill ID - 3356 verified successfully.

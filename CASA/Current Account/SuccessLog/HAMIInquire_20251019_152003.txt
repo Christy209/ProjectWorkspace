@@ -1,4 +1,0 @@
-Function * SelectM - MergeI - Inquire
-Location Class   Location Code
-Inventory Class     Inventory Type
-Start Alpha/Srl. No.     Quantity
