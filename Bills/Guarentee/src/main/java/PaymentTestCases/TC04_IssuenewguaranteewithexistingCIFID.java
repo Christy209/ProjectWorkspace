@@ -99,13 +99,13 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             }
 
             // ----------------------------------------------------------------------
-            // OPTION B — CREATE DOCUMENT-VIEW FOLDER + FILE AUTOMATICALLY
+            // 🔹 Save Document View as HTML and attach to Allure
             // ----------------------------------------------------------------------
             saveDocumentViewCopy();
 
-            // 🔹 Attach consolidated log inside Allure
+            // 🔹 Attach consolidated log as plain text too
             Allure.addAttachment(
-                "TC04_IssuenewguaranteewithexistingCIFID",
+                "TC04 Consolidated Log",
                 "text/plain",
                 testLog.toString()
             );
@@ -121,27 +121,33 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
     }
 
     // ------------------------------------------------------------------
-    // 🔹 OPTION B: SINGLE CUSTOM DOCUMENT TAB (Document View)
+    // 🔹 Save test log as HTML document and attach to Allure
     // ------------------------------------------------------------------
     private void saveDocumentViewCopy() {
-
         try {
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-
             String basePath = System.getProperty("user.dir") + "/Bills/Guarentee/allure-results/document-view";
 
             File folder = new File(basePath + "/TC04_" + timestamp);
             folder.mkdirs();
 
-            File outputFile = new File(folder, "TC04_Document.txt");
+            File outputFile = new File(folder, "TC04_Document.html");
 
+            // Write HTML content
             try (FileWriter writer = new FileWriter(outputFile)) {
+                writer.write("<html><body><pre>");
                 writer.write(testLog.toString());
+                writer.write("</pre></body></html>");
             }
 
-            Allure.addAttachment("TC04 Document View", Files.newInputStream(outputFile.toPath()));
+            // Attach HTML to Allure
+            Allure.addAttachment(
+                "TC04 Document View",
+                "text/html",
+                Files.newInputStream(outputFile.toPath())
+            );
 
-            logStep("📄 Document saved in: " + outputFile.getAbsolutePath());
+            logStep("📄 Document saved and attached: " + outputFile.getAbsolutePath());
 
         } catch (Exception e) {
             logStep("❌ Document saving failed: " + e.getMessage());
