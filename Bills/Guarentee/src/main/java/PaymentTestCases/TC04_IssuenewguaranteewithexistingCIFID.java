@@ -1,5 +1,6 @@
 package PaymentTestCases;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.InputStream;
@@ -122,18 +123,30 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             // 🔹 Save styled HTML document and attach to Allure
             File docFile = saveDocumentViewCopy(startTime, LocalDateTime.now());
 
-            // 🔹 Make clickable link in log
+            // 🔹 Make clickable link in log and open automatically in browser
             if (docFile != null) {
                 String fileUrl = docFile.toURI().toString();
                 logStep("📄 Document saved and attached: <a href='" + fileUrl + "' target='_blank'>Open Document</a>");
                 System.out.println("📄 Document clickable link: " + fileUrl);
+
+                // Open in default browser
+                try {
+                    if (Desktop.isDesktopSupported()) {
+                        Desktop.getDesktop().browse(docFile.toURI());
+                        logStep("✅ Document opened automatically in browser.");
+                    } else {
+                        logStep("⚠️ Desktop is not supported. Cannot open document automatically.");
+                    }
+                } catch (Exception e) {
+                    logStep("❌ Failed to open document automatically: " + e.getMessage());
+                }
             }
 
             // 🔹 Attach plain log as well
             Allure.addAttachment(
-                "TC04 Consolidated Log",
-                "text/plain",
-                testLog.toString()
+                    "TC04 Consolidated Log",
+                    "text/plain",
+                    testLog.toString()
             );
         }
     }
