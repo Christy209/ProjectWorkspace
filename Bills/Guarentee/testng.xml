@@ -10,7 +10,10 @@
         <classes>
         
             <class name="PaymentTestCases.TC04_IssuenewguaranteewithexistingCIFID"/>
-
+            <class name="PaymentTestCases.TC14_MarkParticularGuaranteeforInvocation"/>
+            <class name="PaymentTestCases.TC15_Invokeguaranteeaftermarkingitforinvocation"/>
+            <class name="PaymentTestCases.TC16_CloseTheguaranteeWhichIsAlreadyInvoked"/>
+          
         </classes>
     </test>
 
