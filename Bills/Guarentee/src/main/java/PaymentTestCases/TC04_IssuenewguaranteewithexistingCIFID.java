@@ -33,9 +33,10 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
 
     // 🔹 A single combined log
     private StringBuilder testLog = new StringBuilder();
+    private int totalTests = 0, passedTests = 0, failedTests = 0, skippedTests = 0;
 
     private void logStep(String msg) {
-        String time = "[" + LocalDateTime.now() + "] ";
+        String time = "[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + "] ";
         testLog.append(time).append(msg).append("\n");
     }
 
@@ -58,6 +59,8 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
 
         Login login = new Login();
 
+        LocalDateTime startTime = LocalDateTime.now();
+
         try {
             // ✅ Use existing Excel method
             RowData initialData = ExcelUtils.getRowAsRowData(SHEET_NAME, 1);
@@ -65,38 +68,49 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             RowData verifyData = ExcelUtils.getRowAsRowData(SHEET_NAME, 2);
 
             // ---------------- Step 1: Login as Maker ----------------
+            totalTests++;
             login.First();
             logStep("Login as Maker successful");
+            passedTests++;
 
             OutwardGuaranteeMaintenance guarantee = new OutwardGuaranteeMaintenance(driver);
 
             // ---------------- Step 2: Add Guarantee ----------------
+            totalTests++;
             Map<String, String> addResult = guarantee.executeWithResultMap(addData, initialData, SHEET_NAME, 1, EXCEL_PATH);
             String guaranteeNo = addResult.get("GuaranteeNo");
 
             logStep("Guarantee added - " + guaranteeNo);
             assertGuaranteeCaptured(guaranteeNo, "Add");
+            passedTests++;
 
             // ---------------- Step 3: Logout Maker ----------------
+            totalTests++;
             LogOut.performLogout(driver, wait);
             logStep("Maker logout successful");
+            passedTests++;
 
             // ---------------- Step 4: Login as Checker ----------------
+            totalTests++;
             login.Second();
             logStep("Login as Checker successful");
+            passedTests++;
 
             // Reload Excel to refresh any dynamic data
             ExcelUtils.loadExcel(EXCEL_PATH);
             addData = ExcelUtils.getRowAsRowData(SHEET_NAME, 1);
 
             // ---------------- Step 5: Verify Guarantee ----------------
+            totalTests++;
             Map<String, String> verifyResult = guarantee.executeWithResultMap(verifyData, addData, SHEET_NAME, 2, EXCEL_PATH);
             String verifyGuaranteeNo = verifyResult.get("GuaranteeNo");
 
             logStep("Guarantee verified - " + verifyGuaranteeNo);
             assertGuaranteeCaptured(verifyGuaranteeNo, "Verify");
+            passedTests++;
 
         } catch (Exception e) {
+            failedTests++;
             logStep("❌ Exception Occurred: " + e.getMessage());
             Assert.fail(e.getMessage());
 
@@ -111,7 +125,7 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             // ----------------------------------------------------------------------
             // 🔹 Save Document View as HTML and attach to Allure
             // ----------------------------------------------------------------------
-            saveDocumentViewCopy();
+            saveDocumentViewCopy(startTime, LocalDateTime.now());
 
             // 🔹 Attach consolidated log as plain text too
             Allure.addAttachment(
@@ -126,6 +140,7 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
         if (guaranteeNo == null || guaranteeNo.trim().isEmpty()) {
             String errorMsg = "❌ Guarantee No not captured during " + phase;
             logStep(errorMsg);
+            failedTests++;
             Assert.fail(errorMsg);
         }
     }
@@ -133,25 +148,62 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
     // ------------------------------------------------------------------
     // 🔹 Save test log as HTML document and attach to Allure
     // ------------------------------------------------------------------
-    private void saveDocumentViewCopy() {
+    private void saveDocumentViewCopy(LocalDateTime startTime, LocalDateTime endTime) {
         try {
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
             String basePath = System.getProperty("user.dir") + "/allure-results/document-view";
 
-            // ✅ Single document-view folder, timestamped file per run
             File folder = new File(basePath);
             folder.mkdirs();
 
             File outputFile = new File(folder, "TC04_Document_" + timestamp + ".html");
 
-            // Write HTML content
             try (FileWriter writer = new FileWriter(outputFile)) {
-                writer.write("<html><head><title>TC04 Document View</title></head><body><pre>");
-                writer.write(testLog.toString());
-                writer.write("</pre></body></html>");
+                writer.write("<!DOCTYPE html><html><head><meta charset='UTF-8'>");
+                writer.write("<title>TC04 Document View</title>");
+                writer.write("<style>");
+                writer.write("body { font-family: Arial, sans-serif; background-color:#f4f4f4; padding:20px; }");
+                writer.write(".test-case { background:#fff; border-radius:8px; padding:15px; margin-bottom:15px; box-shadow:0 2px 5px rgba(0,0,0,0.1);} ");
+                writer.write(".test-case h2 { margin:0 0 10px 0; font-size:18px; color:#333;} ");
+                writer.write(".log { font-family: monospace; background:#f0f0f0; padding:10px; border-radius:5px; white-space: pre-wrap;} ");
+                writer.write(".passed { color: green; font-weight:bold; } ");
+                writer.write(".failed { color: red; font-weight:bold; } ");
+                writer.write(".summary { background:#d9edf7; padding:10px; border-radius:5px; margin-top:20px; font-weight:bold;} ");
+                writer.write("</style></head><body>");
+
+                // Split logs by timestamp for each test step
+                String[] steps = testLog.toString().split("(?=\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})");
+
+                for (String step : steps) {
+                    if (step.trim().isEmpty()) continue;
+
+                    writer.write("<div class='test-case'>");
+                    writer.write("<h2>📄 Test Step</h2>");
+
+                    if (step.contains("successful") || step.contains("verified") || step.contains("PASSED")) {
+                        writer.write("<p class='passed'>✅ PASSED</p>");
+                    } else if (step.contains("❌") || step.contains("failed") || step.contains("Exception")) {
+                        writer.write("<p class='failed'>❌ FAILED</p>");
+                    }
+
+                    writer.write("<div class='log'>" + step.trim().replaceAll("\n", "<br>") + "</div>");
+                    writer.write("</div>");
+                }
+
+                // Suite summary
+                Duration duration = Duration.between(startTime, endTime);
+                long mins = duration.toMinutes();
+                long secs = duration.minusMinutes(mins).getSeconds();
+
+                writer.write("<div class='summary'>");
+                writer.write("📊 Suite Summary: TC04_IssuenewguaranteewithexistingCIFID<br>");
+                writer.write("Total tests run: " + totalTests + ", Passes: " + passedTests + ", Failures: " + failedTests + ", Skips: " + skippedTests + "<br>");
+                writer.write("⏱️ Total Duration: " + mins + " min " + secs + " sec");
+                writer.write("</div>");
+
+                writer.write("</body></html>");
             }
 
-            // Attach as InputStream with .html extension for proper Allure rendering
             try (InputStream is = Files.newInputStream(outputFile.toPath())) {
                 Allure.addAttachment("TC04 Document View", "text/html", is, ".html");
             }
