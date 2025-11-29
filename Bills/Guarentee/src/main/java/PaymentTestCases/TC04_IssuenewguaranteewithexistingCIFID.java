@@ -31,7 +31,7 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
     private static final String EXCEL_PATH = System.getProperty("user.dir") + "/Resource/FBTCDATA.xlsx";
     private static final String SHEET_NAME = "TC04";
 
-    // 🔹 A single combined log
+    // 🔹 Combined test log
     private StringBuilder testLog = new StringBuilder();
     private int totalTests = 0, passedTests = 0, failedTests = 0, skippedTests = 0;
 
@@ -62,7 +62,7 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
         LocalDateTime startTime = LocalDateTime.now();
 
         try {
-            // ✅ Use existing Excel method
+            // Load Excel rows
             RowData initialData = ExcelUtils.getRowAsRowData(SHEET_NAME, 1);
             RowData addData = ExcelUtils.getRowAsRowData(SHEET_NAME, 1);
             RowData verifyData = ExcelUtils.getRowAsRowData(SHEET_NAME, 2);
@@ -79,7 +79,6 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             totalTests++;
             Map<String, String> addResult = guarantee.executeWithResultMap(addData, initialData, SHEET_NAME, 1, EXCEL_PATH);
             String guaranteeNo = addResult.get("GuaranteeNo");
-
             logStep("Guarantee added - " + guaranteeNo);
             assertGuaranteeCaptured(guaranteeNo, "Add");
             passedTests++;
@@ -104,7 +103,6 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             totalTests++;
             Map<String, String> verifyResult = guarantee.executeWithResultMap(verifyData, addData, SHEET_NAME, 2, EXCEL_PATH);
             String verifyGuaranteeNo = verifyResult.get("GuaranteeNo");
-
             logStep("Guarantee verified - " + verifyGuaranteeNo);
             assertGuaranteeCaptured(verifyGuaranteeNo, "Verify");
             passedTests++;
@@ -122,12 +120,10 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
                 logStep("⚠ Logout failed at end: " + e.getMessage());
             }
 
-            // ----------------------------------------------------------------------
-            // 🔹 Save Document View as HTML and attach to Allure
-            // ----------------------------------------------------------------------
+            // 🔹 Save styled HTML document and attach to Allure
             saveDocumentViewCopy(startTime, LocalDateTime.now());
 
-            // 🔹 Attach consolidated log as plain text too
+            // 🔹 Attach plain log as well
             Allure.addAttachment(
                 "TC04 Consolidated Log",
                 "text/plain",
@@ -146,7 +142,7 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
     }
 
     // ------------------------------------------------------------------
-    // 🔹 Save test log as HTML document and attach to Allure
+    // 🔹 Save all logs as single HTML test-case card for Allure
     // ------------------------------------------------------------------
     private void saveDocumentViewCopy(LocalDateTime startTime, LocalDateTime endTime) {
         try {
@@ -163,32 +159,26 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
                 writer.write("<title>TC04 Document View</title>");
                 writer.write("<style>");
                 writer.write("body { font-family: Arial, sans-serif; background-color:#f4f4f4; padding:20px; }");
-                writer.write(".test-case { background:#fff; border-radius:8px; padding:15px; margin-bottom:15px; box-shadow:0 2px 5px rgba(0,0,0,0.1);} ");
-                writer.write(".test-case h2 { margin:0 0 10px 0; font-size:18px; color:#333;} ");
+                writer.write(".test-case { background:#fff; border-radius:8px; padding:20px; margin-bottom:15px; box-shadow:0 2px 5px rgba(0,0,0,0.1);} ");
+                writer.write(".test-case h2 { margin:0 0 10px 0; font-size:20px; color:#333;} ");
                 writer.write(".log { font-family: monospace; background:#f0f0f0; padding:10px; border-radius:5px; white-space: pre-wrap;} ");
-                writer.write(".passed { color: green; font-weight:bold; } ");
-                writer.write(".failed { color: red; font-weight:bold; } ");
+                writer.write(".passed { color: green; font-weight:bold; font-size:16px;} ");
+                writer.write(".failed { color: red; font-weight:bold; font-size:16px;} ");
                 writer.write(".summary { background:#d9edf7; padding:10px; border-radius:5px; margin-top:20px; font-weight:bold;} ");
                 writer.write("</style></head><body>");
 
-                // Split logs by timestamp for each test step
-                String[] steps = testLog.toString().split("(?=\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})");
+                // Single test-case card
+                writer.write("<div class='test-case'>");
+                writer.write("<h2>📄 Test Case: TC04_IssuenewguaranteewithexistingCIFID</h2>");
 
-                for (String step : steps) {
-                    if (step.trim().isEmpty()) continue;
-
-                    writer.write("<div class='test-case'>");
-                    writer.write("<h2>📄 Test Step</h2>");
-
-                    if (step.contains("successful") || step.contains("verified") || step.contains("PASSED")) {
-                        writer.write("<p class='passed'>✅ PASSED</p>");
-                    } else if (step.contains("❌") || step.contains("failed") || step.contains("Exception")) {
-                        writer.write("<p class='failed'>❌ FAILED</p>");
-                    }
-
-                    writer.write("<div class='log'>" + step.trim().replaceAll("\n", "<br>") + "</div>");
-                    writer.write("</div>");
+                if (failedTests == 0) {
+                    writer.write("<p class='passed'>✅ PASSED</p>");
+                } else {
+                    writer.write("<p class='failed'>❌ FAILED</p>");
                 }
+
+                writer.write("<div class='log'>" + testLog.toString().trim().replaceAll("\n", "<br>") + "</div>");
+                writer.write("</div>");
 
                 // Suite summary
                 Duration duration = Duration.between(startTime, endTime);
@@ -204,6 +194,7 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
                 writer.write("</body></html>");
             }
 
+            // Attach to Allure
             try (InputStream is = Files.newInputStream(outputFile.toPath())) {
                 Allure.addAttachment("TC04 Document View", "text/html", is, ".html");
             }
