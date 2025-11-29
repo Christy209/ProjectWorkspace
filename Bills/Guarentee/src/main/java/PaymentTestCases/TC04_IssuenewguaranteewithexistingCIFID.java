@@ -86,8 +86,8 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             TestResultLoggerAllure.attachLogLine(errorMsg);
             Assert.fail(errorMsg);
         } finally {
-            // 🔹 Attach full log file to Allure at the end
-            TestResultLoggerAllure.attachLogFile(logFile);
+			//LogOut.performLogout(driver, wait);
+           // TestResultLoggerAllure.attachLogFile(logFile);
 
             // 🔹 Always perform logout at the end
             try {

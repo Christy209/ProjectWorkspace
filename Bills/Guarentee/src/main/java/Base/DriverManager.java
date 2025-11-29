@@ -129,7 +129,7 @@ public class DriverManager {
     public static String getProperty(String key) {
         try {
             String projectPath = System.getProperty("user.dir");
-            FileInputStream configFile = new FileInputStream(projectPath + "/resources/config.properties");
+            FileInputStream configFile = new FileInputStream(projectPath + "/Resource/config.properties");
             Properties propertyObj = new Properties();
             propertyObj.load(configFile);
             return propertyObj.getProperty(key);
