@@ -140,11 +140,12 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
                 writer.write("</pre></body></html>");
             }
 
-            // Attach HTML to Allure
+            // ✅ Read HTML as String and attach to Allure
+            String htmlContent = Files.readString(outputFile.toPath());
             Allure.addAttachment(
                 "TC04 Document View",
                 "text/html",
-                Files.newInputStream(outputFile.toPath())
+                htmlContent
             );
 
             logStep("📄 Document saved and attached: " + outputFile.getAbsolutePath());
