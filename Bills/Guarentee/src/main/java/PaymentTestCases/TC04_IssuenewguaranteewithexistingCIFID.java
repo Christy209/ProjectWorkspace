@@ -29,7 +29,7 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
     private WebDriverWait wait;
 
     private static final String EXCEL_PATH = System.getProperty("user.dir") + "/Resource/FBTCDATA.xlsx";
-    private static final String SHEET_NAME = "TC04_IssuenewguaranteewithexistingCIFID";
+    private static final String SHEET_NAME = "TC04";
 
     // 🔹 A single combined log
     private StringBuilder testLog = new StringBuilder();
