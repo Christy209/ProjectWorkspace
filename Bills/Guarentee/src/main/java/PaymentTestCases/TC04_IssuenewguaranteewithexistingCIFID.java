@@ -43,7 +43,14 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
     public void setup() throws Exception {
         driver = DriverManager.getDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        ExcelUtils.loadExcel(EXCEL_PATH);
+
+        try {
+            ExcelUtils.loadExcel(EXCEL_PATH);
+            logStep("Excel loaded successfully: " + EXCEL_PATH);
+        } catch (Exception e) {
+            logStep("❌ Failed to load Excel: " + e.getMessage());
+            Assert.fail("Cannot load Excel: " + EXCEL_PATH);
+        }
     }
 
     @Test
@@ -52,9 +59,10 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
         Login login = new Login();
 
         try {
-            RowData initialData = ExcelUtils.getRowAsRowData("TC04", 1);
-            RowData addData = ExcelUtils.getRowAsRowData(SHEET_NAME, 1);
-            RowData verifyData = ExcelUtils.getRowAsRowData(SHEET_NAME, 2);
+            // Safely fetch rows
+            RowData initialData = ExcelUtils.getRowAsRowDataSafe(SHEET_NAME, 1);
+            RowData addData = ExcelUtils.getRowAsRowDataSafe(SHEET_NAME, 1);
+            RowData verifyData = ExcelUtils.getRowAsRowDataSafe(SHEET_NAME, 2);
 
             // ---------------- Step 1: Login as Maker ----------------
             login.First();
@@ -77,8 +85,9 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             login.Second();
             logStep("Login as Checker successful");
 
+            // Reload Excel to refresh any dynamic data
             ExcelUtils.loadExcel(EXCEL_PATH);
-            addData = ExcelUtils.getRowAsRowData(SHEET_NAME, 1);
+            addData = ExcelUtils.getRowAsRowDataSafe(SHEET_NAME, 1);
 
             // ---------------- Step 5: Verify Guarantee ----------------
             Map<String, String> verifyResult = guarantee.executeWithResultMap(verifyData, addData, SHEET_NAME, 2, EXCEL_PATH);
@@ -127,7 +136,7 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
     private void saveDocumentViewCopy() {
         try {
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-            String basePath = System.getProperty("user.dir") + "/Bills/Guarentee/allure-results/document-view";
+            String basePath = System.getProperty("user.dir") + "/allure-results/document-view";
 
             // ✅ Single document-view folder, timestamped file per run
             File folder = new File(basePath);
