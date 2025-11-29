@@ -1,6 +1,7 @@
 package PaymentTestCases;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Map;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,7 +15,7 @@ import Utilities.LogOut;
 import Utilities.Login;
 import Utilities.RowData;
 import Utilities.TestResultLogger;
-import Utilities.TestResultLoggerAllure;
+import io.qameta.allure.Allure;
 
 public class TC04_IssuenewguaranteewithexistingCIFID {
 
@@ -22,6 +23,14 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
     private WebDriverWait wait;
     private static final String EXCEL_PATH = System.getProperty("user.dir") + "/Resource/FBTCDATA.xlsx";
     private static final String SHEET_NAME = "TC04";
+
+    // 🔹 NEW → A single combined log
+    private StringBuilder testLog = new StringBuilder();
+
+    private void logStep(String msg) {
+        String time = "[" + LocalDateTime.now().toString() + "] ";
+        testLog.append(time).append(msg).append("\n");
+    }
 
     @BeforeClass
     public void setup() throws Exception {
@@ -32,38 +41,34 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
 
     @Test
     public void runTest() throws Exception {
-        String logFile = TestResultLogger.createLogFile("TC04_IssuenewguaranteewithexistingCIFID");
+
         Login login = new Login();
 
         try {
-            // 🔹 Load Test Data
-            RowData initialData = ExcelUtils.getRowAsRowData("TC04", 1); // Initial row
-            RowData addData = ExcelUtils.getRowAsRowData(SHEET_NAME, 1); // Row 1 = Add
-            RowData verifyData = ExcelUtils.getRowAsRowData(SHEET_NAME, 2); // Row 2 = Verify
+            RowData initialData = ExcelUtils.getRowAsRowData("TC04", 1);
+            RowData addData = ExcelUtils.getRowAsRowData(SHEET_NAME, 1);
+            RowData verifyData = ExcelUtils.getRowAsRowData(SHEET_NAME, 2);
 
             // ---------------- Step 1: Login as Maker ----------------
             login.First();
-            TestResultLoggerAllure.attachLogLine("Step 1: Login as Maker successful");
+            logStep("Login as Maker successful");
 
             OutwardGuaranteeMaintenance guarantee = new OutwardGuaranteeMaintenance(driver);
 
             // ---------------- Step 2: Add Guarantee ----------------
             Map<String, String> addResult = guarantee.executeWithResultMap(addData, initialData, SHEET_NAME, 1, EXCEL_PATH);
             String guaranteeNo = addResult.get("GuaranteeNo");
-            String labelText = addResult.get("LabelText");
+            logStep("Guarantee added - " + guaranteeNo);
 
-            // Validate Guarantee Number captured
-            assertGuaranteeCaptured(guaranteeNo, logFile, "Add");
-            TestResultLogger.log(logFile, "✅ " + labelText);
-            TestResultLoggerAllure.attachLogLine("Step 2: Guarantee added - " + guaranteeNo);
+            assertGuaranteeCaptured(guaranteeNo, "Add");
 
             // ---------------- Step 3: Logout Maker ----------------
             LogOut.performLogout(driver, wait);
-            TestResultLoggerAllure.attachLogLine("Step 3: Maker logout successful");
+            logStep("Maker logout successful");
 
             // ---------------- Step 4: Login as Checker ----------------
             login.Second();
-            TestResultLoggerAllure.attachLogLine("Step 4: Login as Checker successful");
+            logStep("Login as Checker successful");
 
             ExcelUtils.loadExcel(EXCEL_PATH);
             addData = ExcelUtils.getRowAsRowData(SHEET_NAME, 1);
@@ -71,45 +76,37 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             // ---------------- Step 5: Verify Guarantee ----------------
             Map<String, String> verifyResult = guarantee.executeWithResultMap(verifyData, addData, SHEET_NAME, 2, EXCEL_PATH);
             String verifyGuaranteeNo = verifyResult.get("GuaranteeNo");
-            String verifyLabelText = verifyResult.get("LabelText");
 
-            assertGuaranteeCaptured(verifyGuaranteeNo, logFile, "Verify");
+            logStep("Guarantee verified - " + verifyGuaranteeNo);
 
-            TestResultLogger.log(logFile, "✅ " + verifyLabelText);
-            TestResultLoggerAllure.attachLogLine("Step 5: Guarantee verified - " + verifyGuaranteeNo);
-            System.out.println("✅ " + verifyLabelText);
+            assertGuaranteeCaptured(verifyGuaranteeNo, "Verify");
 
         } catch (Exception e) {
-            String errorMsg = "❌ Exception Occurred: " + e.getMessage();
-            System.err.println(errorMsg);
-            TestResultLogger.log(logFile, errorMsg);
-            TestResultLoggerAllure.attachLogLine(errorMsg);
-            Assert.fail(errorMsg);
-        } finally {
-			//LogOut.performLogout(driver, wait);
-           // TestResultLoggerAllure.attachLogFile(logFile);
+            logStep("❌ Exception Occurred: " + e.getMessage());
+            Assert.fail(e.getMessage());
 
-            // 🔹 Always perform logout at the end
+        } finally {
             try {
                 LogOut.performLogout(driver, wait);
             } catch (Exception e) {
-                String logoutMsg = "⚠️ Logout failed at end: " + e.getMessage();
-                System.err.println(logoutMsg);
-                TestResultLogger.log(logFile, logoutMsg);
-                TestResultLoggerAllure.attachLogLine(logoutMsg);
+                logStep("⚠️ Logout failed at end: " + e.getMessage());
             }
+
+            // 🔹 FINAL STEP → Attach consolidated log to Allure
+            Allure.addAttachment(
+                "TC04_IssuenewguaranteewithexistingCIFID",
+                "text/plain",
+                testLog.toString(),
+                ".txt"
+            );
         }
     }
 
-    private void assertGuaranteeCaptured(String guaranteeNo, String logFile, String phase) throws Exception {
+    private void assertGuaranteeCaptured(String guaranteeNo, String phase) {
         if (guaranteeNo == null || guaranteeNo.trim().isEmpty()) {
-            String errorMsg = "❌ Error: Guarantee No not captured from UI during " + phase + " phase.";
-            System.err.println(errorMsg);
-            TestResultLogger.log(logFile, errorMsg);
-            TestResultLoggerAllure.attachLogLine(errorMsg);
+            String errorMsg = "❌ Guarantee No not captured during " + phase;
+            logStep(errorMsg);
             Assert.fail(errorMsg);
-        } else {
-            System.out.println("✅ Guarantee No Captured during " + phase + ": " + guaranteeNo);
         }
     }
 }
