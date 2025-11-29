@@ -59,10 +59,10 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
         Login login = new Login();
 
         try {
-            // Safely fetch rows
-            RowData initialData = ExcelUtils.getRowAsRowDataSafe(SHEET_NAME, 1);
-            RowData addData = ExcelUtils.getRowAsRowDataSafe(SHEET_NAME, 1);
-            RowData verifyData = ExcelUtils.getRowAsRowDataSafe(SHEET_NAME, 2);
+            // ✅ Use existing Excel method
+            RowData initialData = ExcelUtils.getRowAsRowData(SHEET_NAME, 1);
+            RowData addData = ExcelUtils.getRowAsRowData(SHEET_NAME, 1);
+            RowData verifyData = ExcelUtils.getRowAsRowData(SHEET_NAME, 2);
 
             // ---------------- Step 1: Login as Maker ----------------
             login.First();
@@ -87,7 +87,7 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
 
             // Reload Excel to refresh any dynamic data
             ExcelUtils.loadExcel(EXCEL_PATH);
-            addData = ExcelUtils.getRowAsRowDataSafe(SHEET_NAME, 1);
+            addData = ExcelUtils.getRowAsRowData(SHEET_NAME, 1);
 
             // ---------------- Step 5: Verify Guarantee ----------------
             Map<String, String> verifyResult = guarantee.executeWithResultMap(verifyData, addData, SHEET_NAME, 2, EXCEL_PATH);
