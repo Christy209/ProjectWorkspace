@@ -14,6 +14,7 @@ import Utilities.LogOut;
 import Utilities.Login;
 import Utilities.RowData;
 import Utilities.TestResultLogger;
+import Utilities.TestResultLoggerAllure;
 
 public class TC04_IssuenewguaranteewithexistingCIFID {
 
@@ -42,6 +43,8 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
 
             // ---------------- Step 1: Login as Maker ----------------
             login.First();
+            TestResultLoggerAllure.attachLogLine("Step 1: Login as Maker successful");
+
             OutwardGuaranteeMaintenance guarantee = new OutwardGuaranteeMaintenance(driver);
 
             // ---------------- Step 2: Add Guarantee ----------------
@@ -51,13 +54,16 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
 
             // Validate Guarantee Number captured
             assertGuaranteeCaptured(guaranteeNo, logFile, "Add");
-            TestResultLogger.log(logFile, labelText);
+            TestResultLogger.log(logFile, "✅ " + labelText);
+            TestResultLoggerAllure.attachLogLine("Step 2: Guarantee added - " + guaranteeNo);
 
             // ---------------- Step 3: Logout Maker ----------------
             LogOut.performLogout(driver, wait);
+            TestResultLoggerAllure.attachLogLine("Step 3: Maker logout successful");
 
             // ---------------- Step 4: Login as Checker ----------------
             login.Second();
+            TestResultLoggerAllure.attachLogLine("Step 4: Login as Checker successful");
 
             ExcelUtils.loadExcel(EXCEL_PATH);
             addData = ExcelUtils.getRowAsRowData(SHEET_NAME, 1);
@@ -69,23 +75,28 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
 
             assertGuaranteeCaptured(verifyGuaranteeNo, logFile, "Verify");
 
-            String verificationMsg = verifyLabelText;
-
-            TestResultLogger.log(logFile, "✅ " + verificationMsg);
-            System.out.println("✅ " + verificationMsg);
+            TestResultLogger.log(logFile, "✅ " + verifyLabelText);
+            TestResultLoggerAllure.attachLogLine("Step 5: Guarantee verified - " + verifyGuaranteeNo);
+            System.out.println("✅ " + verifyLabelText);
 
         } catch (Exception e) {
             String errorMsg = "❌ Exception Occurred: " + e.getMessage();
             System.err.println(errorMsg);
             TestResultLogger.log(logFile, errorMsg);
+            TestResultLoggerAllure.attachLogLine(errorMsg);
             Assert.fail(errorMsg);
         } finally {
+            // 🔹 Attach full log file to Allure at the end
+            TestResultLoggerAllure.attachLogFile(logFile);
+
             // 🔹 Always perform logout at the end
             try {
-               LogOut.performLogout(driver, wait);
+                LogOut.performLogout(driver, wait);
             } catch (Exception e) {
-                System.err.println("⚠️ Logout failed at end: " + e.getMessage());
-                TestResultLogger.log(logFile, "⚠️ Logout failed at end: " + e.getMessage());
+                String logoutMsg = "⚠️ Logout failed at end: " + e.getMessage();
+                System.err.println(logoutMsg);
+                TestResultLogger.log(logFile, logoutMsg);
+                TestResultLoggerAllure.attachLogLine(logoutMsg);
             }
         }
     }
@@ -95,6 +106,7 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             String errorMsg = "❌ Error: Guarantee No not captured from UI during " + phase + " phase.";
             System.err.println(errorMsg);
             TestResultLogger.log(logFile, errorMsg);
+            TestResultLoggerAllure.attachLogLine(errorMsg);
             Assert.fail(errorMsg);
         } else {
             System.out.println("✅ Guarantee No Captured during " + phase + ": " + guaranteeNo);
