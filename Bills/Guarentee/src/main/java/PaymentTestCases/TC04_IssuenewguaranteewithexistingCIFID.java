@@ -1,34 +1,40 @@
 package PaymentTestCases;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.nio.file.Files;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import Base.DriverManager;
 import PAYMENTS.OutwardGuaranteeMaintenance;
 import Utilities.ExcelUtils;
 import Utilities.LogOut;
 import Utilities.Login;
 import Utilities.RowData;
-import Utilities.TestResultLogger;
 import io.qameta.allure.Allure;
 
 public class TC04_IssuenewguaranteewithexistingCIFID {
 
     private WebDriver driver;
     private WebDriverWait wait;
+
     private static final String EXCEL_PATH = System.getProperty("user.dir") + "/Resource/FBTCDATA.xlsx";
     private static final String SHEET_NAME = "TC04";
 
-    // 🔹 NEW → A single combined log
+    // 🔹 A single combined log
     private StringBuilder testLog = new StringBuilder();
 
     private void logStep(String msg) {
-        String time = "[" + LocalDateTime.now().toString() + "] ";
+        String time = "[" + LocalDateTime.now() + "] ";
         testLog.append(time).append(msg).append("\n");
     }
 
@@ -58,8 +64,8 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             // ---------------- Step 2: Add Guarantee ----------------
             Map<String, String> addResult = guarantee.executeWithResultMap(addData, initialData, SHEET_NAME, 1, EXCEL_PATH);
             String guaranteeNo = addResult.get("GuaranteeNo");
-            logStep("Guarantee added - " + guaranteeNo);
 
+            logStep("Guarantee added - " + guaranteeNo);
             assertGuaranteeCaptured(guaranteeNo, "Add");
 
             // ---------------- Step 3: Logout Maker ----------------
@@ -78,7 +84,6 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             String verifyGuaranteeNo = verifyResult.get("GuaranteeNo");
 
             logStep("Guarantee verified - " + verifyGuaranteeNo);
-
             assertGuaranteeCaptured(verifyGuaranteeNo, "Verify");
 
         } catch (Exception e) {
@@ -86,18 +91,23 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             Assert.fail(e.getMessage());
 
         } finally {
+
             try {
                 LogOut.performLogout(driver, wait);
             } catch (Exception e) {
-                logStep("⚠️ Logout failed at end: " + e.getMessage());
+                logStep("⚠ Logout failed at end: " + e.getMessage());
             }
 
-            // 🔹 FINAL STEP → Attach consolidated log to Allure
+            // ----------------------------------------------------------------------
+            // OPTION B — CREATE DOCUMENT-VIEW FOLDER + FILE AUTOMATICALLY
+            // ----------------------------------------------------------------------
+            saveDocumentViewCopy();
+
+            // 🔹 Attach consolidated log inside Allure
             Allure.addAttachment(
                 "TC04_IssuenewguaranteewithexistingCIFID",
                 "text/plain",
-                testLog.toString(),
-                ".txt"
+                testLog.toString()
             );
         }
     }
@@ -107,6 +117,34 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             String errorMsg = "❌ Guarantee No not captured during " + phase;
             logStep(errorMsg);
             Assert.fail(errorMsg);
+        }
+    }
+
+    // ------------------------------------------------------------------
+    // 🔹 OPTION B: SINGLE CUSTOM DOCUMENT TAB (Document View)
+    // ------------------------------------------------------------------
+    private void saveDocumentViewCopy() {
+
+        try {
+            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+
+            String basePath = System.getProperty("user.dir") + "/Bills/Guarentee/allure-results/document-view";
+
+            File folder = new File(basePath + "/TC04_" + timestamp);
+            folder.mkdirs();
+
+            File outputFile = new File(folder, "TC04_Document.txt");
+
+            try (FileWriter writer = new FileWriter(outputFile)) {
+                writer.write(testLog.toString());
+            }
+
+            Allure.addAttachment("TC04 Document View", Files.newInputStream(outputFile.toPath()));
+
+            logStep("📄 Document saved in: " + outputFile.getAbsolutePath());
+
+        } catch (Exception e) {
+            logStep("❌ Document saving failed: " + e.getMessage());
         }
     }
 }
