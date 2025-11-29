@@ -2,6 +2,7 @@ package PaymentTestCases;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -28,7 +29,7 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
     private WebDriverWait wait;
 
     private static final String EXCEL_PATH = System.getProperty("user.dir") + "/Resource/FBTCDATA.xlsx";
-    private static final String SHEET_NAME = "TC04";
+    private static final String SHEET_NAME = "TC04_IssuenewguaranteewithexistingCIFID";
 
     // 🔹 A single combined log
     private StringBuilder testLog = new StringBuilder();
@@ -128,25 +129,23 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
             String basePath = System.getProperty("user.dir") + "/Bills/Guarentee/allure-results/document-view";
 
-            File folder = new File(basePath + "/TC04_" + timestamp);
+            // ✅ Single document-view folder, timestamped file per run
+            File folder = new File(basePath);
             folder.mkdirs();
 
-            File outputFile = new File(folder, "TC04_Document.html");
+            File outputFile = new File(folder, "TC04_Document_" + timestamp + ".html");
 
             // Write HTML content
             try (FileWriter writer = new FileWriter(outputFile)) {
-                writer.write("<html><body><pre>");
+                writer.write("<html><head><title>TC04 Document View</title></head><body><pre>");
                 writer.write(testLog.toString());
                 writer.write("</pre></body></html>");
             }
 
-            // ✅ Read HTML as String and attach to Allure
-            String htmlContent = Files.readString(outputFile.toPath());
-            Allure.addAttachment(
-                "TC04 Document View",
-                "text/html",
-                htmlContent
-            );
+            // Attach as InputStream with .html extension for proper Allure rendering
+            try (InputStream is = Files.newInputStream(outputFile.toPath())) {
+                Allure.addAttachment("TC04 Document View", "text/html", is, ".html");
+            }
 
             logStep("📄 Document saved and attached: " + outputFile.getAbsolutePath());
 
