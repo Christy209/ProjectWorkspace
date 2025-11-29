@@ -1,0 +1,93 @@
+pipeline {
+    agent any
+
+    environment {
+        MAVEN_HOME = "C:\\apache-maven-3.9.10\\bin\\mvn"
+        ALLURE_HISTORY = "C:\\Jenkins\\allure-history\\ImportAndInwardBills"
+    }
+
+    stages {
+
+        stage('Init') {
+            steps {
+                script {
+                    echo "Selected Branch  : main"
+                    echo "Selected TestCase: TC01_LodgeTheBillUsingImportandInwardMenu"
+                }
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/AutoSuit/Payments.git',
+                    branch: "main"
+            }
+        }
+
+        stage('Build') {
+            steps {
+                dir('ImportAndInwardBills') {
+                    bat "\"${MAVEN_HOME}\" clean install -U"
+                }
+            }
+        }
+
+        stage('Run Selected Tests') {
+            steps {
+                dir('ImportAndInwardBills') {
+                    script {
+                        bat 'rmdir /S /Q target\\surefire-reports || exit 0'
+                        bat 'rmdir /S /Q allure-results\\history || exit 0'
+
+                        def testCase = "TC01_LodgeTheBillUsingImportandInwardMenu"
+                        bat "\"${MAVEN_HOME}\" clean -Dtest=TestCases.${testCase} test -Dallure.results.directory=allure-results"
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                bat """
+                if exist ${ALLURE_HISTORY} (
+                    xcopy /E /I /Y ${ALLURE_HISTORY} ImportAndInwardBills\\allure-results\\history >nul 2>&1
+                )
+                """
+
+                allure includeProperties: false,
+                       jdk: '',
+                       results: [[path: 'ImportAndInwardBills/allure-results']]
+
+                bat """
+                if not exist ${ALLURE_HISTORY} mkdir ${ALLURE_HISTORY}
+                xcopy /E /I /Y ImportAndInwardBills\\allure-results\\history ${ALLURE_HISTORY} >nul 2>&1
+                """
+
+                archiveArtifacts artifacts: 'ImportAndInwardBills/allure-results/**', fingerprint: true
+
+                // SAFE JUNIT: Will NEVER mark build UNSTABLE
+                def reportFiles = findFiles(glob: 'ImportAndInwardBills/target/surefire-reports/*.xml')
+                if (reportFiles.length > 0) {
+                    junit(
+                        testResults: 'ImportAndInwardBills/target/surefire-reports/*.xml',
+                        allowEmptyResults: true,
+                        skipMarkingBuildUnstable: true,
+                        keepLongStdio: true
+                    )
+                } else {
+                    echo "⚠ No test XML reports found, skipping JUnit publishing"
+                }
+            }
+        }
+
+        success {
+            echo "🎉 Build PASSED"
+        }
+
+        failure {
+            echo "❌ Build FAILED"
+        }
+    }
+}
