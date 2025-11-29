@@ -58,7 +58,6 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
     public void runTest() throws Exception {
 
         Login login = new Login();
-
         LocalDateTime startTime = LocalDateTime.now();
 
         try {
@@ -121,7 +120,14 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
             }
 
             // 🔹 Save styled HTML document and attach to Allure
-            saveDocumentViewCopy(startTime, LocalDateTime.now());
+            File docFile = saveDocumentViewCopy(startTime, LocalDateTime.now());
+
+            // 🔹 Make clickable link in log
+            if (docFile != null) {
+                String fileUrl = docFile.toURI().toString();
+                logStep("📄 Document saved and attached: <a href='" + fileUrl + "' target='_blank'>Open Document</a>");
+                System.out.println("📄 Document clickable link: " + fileUrl);
+            }
 
             // 🔹 Attach plain log as well
             Allure.addAttachment(
@@ -144,7 +150,7 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
     // ------------------------------------------------------------------
     // 🔹 Save all logs as single HTML test-case card for Allure
     // ------------------------------------------------------------------
-    private void saveDocumentViewCopy(LocalDateTime startTime, LocalDateTime endTime) {
+    private File saveDocumentViewCopy(LocalDateTime startTime, LocalDateTime endTime) {
         try {
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
             String basePath = System.getProperty("user.dir") + "/allure-results/document-view";
@@ -167,7 +173,6 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
                 writer.write(".summary { background:#d9edf7; padding:10px; border-radius:5px; margin-top:20px; font-weight:bold;} ");
                 writer.write("</style></head><body>");
 
-                // Single test-case card
                 writer.write("<div class='test-case'>");
                 writer.write("<h2>📄 Test Case: TC04_IssuenewguaranteewithexistingCIFID</h2>");
 
@@ -180,7 +185,6 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
                 writer.write("<div class='log'>" + testLog.toString().trim().replaceAll("\n", "<br>") + "</div>");
                 writer.write("</div>");
 
-                // Suite summary
                 Duration duration = Duration.between(startTime, endTime);
                 long mins = duration.toMinutes();
                 long secs = duration.minusMinutes(mins).getSeconds();
@@ -194,15 +198,16 @@ public class TC04_IssuenewguaranteewithexistingCIFID {
                 writer.write("</body></html>");
             }
 
-            // Attach to Allure
+            // Attach HTML to Allure
             try (InputStream is = Files.newInputStream(outputFile.toPath())) {
                 Allure.addAttachment("TC04 Document View", "text/html", is, ".html");
             }
 
-            logStep("📄 Document saved and attached: " + outputFile.getAbsolutePath());
+            return outputFile;
 
         } catch (Exception e) {
             logStep("❌ Document saving failed: " + e.getMessage());
+            return null;
         }
     }
 }
