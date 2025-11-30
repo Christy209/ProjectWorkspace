@@ -24,6 +24,25 @@ pipeline {
             }
         }
 
+        stage('Read Config') {
+            steps {
+                script {
+                    def configPath = 'ImportAndInwardBills/resources/config.properties'
+                    echo "Reading config from: ${configPath}"
+
+                    // Read properties
+                    def props = readProperties file: configPath
+                    env.DB_URL = props.DB_URL
+                    env.DB_USER = props.DB_USER
+                    env.DB_PASS = props.DB_PASS
+
+                    echo "DB_URL   : ${env.DB_URL}"
+                    echo "DB_USER  : ${env.DB_USER}"
+                    // Don't echo DB_PASS for security
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 dir('ImportAndInwardBills') {
@@ -40,7 +59,11 @@ pipeline {
                         bat 'rmdir /S /Q allure-results\\history || exit 0'
 
                         def testCase = "TC01_LodgeTheBillUsingImportandInwardMenu"
-                        bat "\"${MAVEN_HOME}\" clean -Dtest=TestCases.${testCase} test -Dallure.results.directory=allure-results"
+
+                        // Pass DB properties to Maven/TestNG dynamically
+                        bat "\"${MAVEN_HOME}\" clean -Dtest=TestCases.${testCase} test " +
+                            "-Dallure.results.directory=allure-results " +
+                            "-Ddb.url=${env.DB_URL} -Ddb.user=${env.DB_USER} -Ddb.pass=${env.DB_PASS}"
                     }
                 }
             }
