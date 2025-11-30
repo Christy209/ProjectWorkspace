@@ -1,8 +1,0 @@
-Function * SelectV - VerifyX - CancelZ - Close
-A/c. ID *
-Balance  Transfer   Transaction Type NoneCashTransferBoth
-Transfer Amt.   Cash CCY / Amt.
-Transfer A/c. ID
-Report Code
-Transfer Transaction Exchange Rate
-Cash Transaction Exchange Rate
