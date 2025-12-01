@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         MAVEN_HOME = "C:\\apache-maven-3.9.10\\bin\\mvn"
-        ALLURE_HISTORY = "C:\\Jenkins\\allure-history\\ImportAndInwardBills"
     }
 
     stages {
@@ -30,7 +29,6 @@ pipeline {
                     def configPath = 'ImportAndInwardBills/resources/config.properties'
                     echo "Reading config from: ${configPath}"
 
-                    // Read properties
                     def props = readProperties file: configPath
                     env.DB_URL = props.DB_URL
                     env.DB_USER = props.DB_USER
@@ -38,7 +36,6 @@ pipeline {
 
                     echo "DB_URL   : ${env.DB_URL}"
                     echo "DB_USER  : ${env.DB_USER}"
-                    // Don't echo DB_PASS for security
                 }
             }
         }
@@ -56,13 +53,10 @@ pipeline {
                 dir('ImportAndInwardBills') {
                     script {
                         bat 'rmdir /S /Q target\\surefire-reports || exit 0'
-                        bat 'rmdir /S /Q allure-results\\history || exit 0'
 
                         def testCase = "TC01_LodgeTheBillUsingImportandInwardMenu"
 
-                        // Pass DB properties to Maven/TestNG dynamically
                         bat "\"${MAVEN_HOME}\" clean -Dtest=TestCases.${testCase} test " +
-                            "-Dallure.results.directory=allure-results " +
                             "-Ddb.url=${env.DB_URL} -Ddb.user=${env.DB_USER} -Ddb.pass=${env.DB_PASS}"
                     }
                 }
@@ -73,25 +67,9 @@ pipeline {
     post {
         always {
             script {
-                bat """
-                if exist ${ALLURE_HISTORY} (
-                    xcopy /E /I /Y ${ALLURE_HISTORY} ImportAndInwardBills\\allure-results\\history >nul 2>&1
-                )
-                """
-
-                allure includeProperties: false,
-                       jdk: '',
-                       results: [[path: 'ImportAndInwardBills/allure-results']]
-
-                bat """
-                if not exist ${ALLURE_HISTORY} mkdir ${ALLURE_HISTORY}
-                xcopy /E /I /Y ImportAndInwardBills\\allure-results\\history ${ALLURE_HISTORY} >nul 2>&1
-                """
-
-                archiveArtifacts artifacts: 'ImportAndInwardBills/allure-results/**', fingerprint: true
-
-                // SAFE JUNIT: Will NEVER mark build UNSTABLE
+                // SAFE JUNIT (no allure)
                 def reportFiles = findFiles(glob: 'ImportAndInwardBills/target/surefire-reports/*.xml')
+
                 if (reportFiles.length > 0) {
                     junit(
                         testResults: 'ImportAndInwardBills/target/surefire-reports/*.xml',
@@ -102,6 +80,9 @@ pipeline {
                 } else {
                     echo "⚠ No test XML reports found, skipping JUnit publishing"
                 }
+
+                // Archive test output
+                archiveArtifacts artifacts: 'ImportAndInwardBills/target/surefire-reports/**', fingerprint: true
             }
         }
 
