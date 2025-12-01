@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         MAVEN_HOME = "C:\\apache-maven-3.9.10\\bin\\mvn"
-        BACKEND_URL = "http://localhost:4000" // Your manually started backend
     }
 
     stages {
@@ -31,29 +30,6 @@ pipeline {
             }
         }
 
-        stage('Fetch Config from Backend') {
-            steps {
-                script {
-                    echo "📄 Fetching config.properties from backend at ${env.BACKEND_URL}"
-
-                    def testResultDir = "${env.WORKSPACE}\\TestResult"
-                    if (!fileExists(testResultDir)) {
-                        bat "mkdir \"${testResultDir}\""
-                    }
-
-                    // Fetch config from running backend
-                    def configContent = bat(
-                        script: "curl -s ${env.BACKEND_URL}/config",
-                        returnStdout: true
-                    ).trim()
-
-                    writeFile file: "${testResultDir}\\config.properties", text: configContent
-
-                    echo "🔹 Config fetched and saved to TestResult\\config.properties"
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 script {
@@ -68,21 +44,6 @@ pipeline {
                 script {
                     echo "🧪 Running TestCase: TC01_LodgeTheBillUsingImportandInwardMenu"
                     bat "${MAVEN_HOME} test -f %WORKSPACE%\\ImportAndInwardBills\\pom.xml -Dtest=TC01_LodgeTheBillUsingImportandInwardMenu"
-                }
-            }
-        }
-
-        stage('Update Config Back to Backend (Optional)') {
-            steps {
-                script {
-                    echo "🔄 Updating config.properties back to backend (optional)"
-
-                    def updatedContent = readFile("${env.WORKSPACE}\\TestResult\\config.properties")
-                    def escapedContent = updatedContent.replaceAll('"', '\\"')
-
-                    bat """
-                    curl -X POST -H "Content-Type: application/json" -d "{\\"content\\": \\"${escapedContent}\\", \\"secret\\": \\"CHRISTY_EDIT\\"}" ${env.BACKEND_URL}/config
-                    """
                 }
             }
         }
