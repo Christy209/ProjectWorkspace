@@ -33,16 +33,14 @@ pipeline {
 
         stage('Use Managed Config') {
             steps {
-                // Load Jenkins Managed File dynamically
-                configFileProvider([configFile(fileId: 'YOUR_FILE_ID_HERE', variable: 'CONFIG_FILE')]) {
+                // Use your Jenkins Managed File
+                configFileProvider([configFile(fileId: 'CONFIG_FILE_ID', variable: 'CONFIG_FILE')]) {
                     script {
                         echo "📄 Copying Jenkins Managed config to workspace"
-                        bat "copy /Y \"%CONFIG_FILE%\" ImportAndInwardBills\\resources\\config.properties"
+                        bat "copy /Y \"%CONFIG_FILE%\" %WORKSPACE%\\ImportAndInwardBills\\resources\\config.properties"
 
-                        // Read properties dynamically
-                        def props = readProperties file: 'ImportAndInwardBills/resources/config.properties'
-
-                        // Export properties as environment variables
+                        // Read properties and set environment variables
+                        def props = readProperties file: '%WORKSPACE%\\ImportAndInwardBills\\resources\\config.properties'
                         env.URL     = props.url
                         env.USERID  = props.userid
                         env.PASS    = props.password
@@ -64,7 +62,7 @@ pipeline {
             steps {
                 script {
                     echo "🔨 Running Maven Build..."
-                    bat "${MAVEN_HOME} clean install -f ImportAndInwardBills\\pom.xml"
+                    bat "${MAVEN_HOME} clean install -f %WORKSPACE%\\ImportAndInwardBills\\pom.xml"
                 }
             }
         }
@@ -73,7 +71,7 @@ pipeline {
             steps {
                 script {
                     echo "🧪 Running TestCase: TC01_LodgeTheBillUsingImportandInwardMenu"
-                    bat "${MAVEN_HOME} test -f ImportAndInwardBills\\pom.xml -Dtest=TC01_LodgeTheBillUsingImportandInwardMenu"
+                    bat "${MAVEN_HOME} test -f %WORKSPACE%\\ImportAndInwardBills\\pom.xml -Dtest=TC01_LodgeTheBillUsingImportandInwardMenu"
                 }
             }
         }
