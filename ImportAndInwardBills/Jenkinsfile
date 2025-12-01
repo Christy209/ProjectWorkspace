@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        // Set Maven home
         MAVEN_HOME = "C:\\apache-maven-3.9.10\\bin\\mvn"
     }
 
@@ -10,30 +11,35 @@ pipeline {
         stage('Init') {
             steps {
                 script {
-                    echo "Selected Branch  : main"
-                    echo "Selected TestCase: TC01_LodgeTheBillUsingImportandInwardMenu"
+                    echo "🟢 Selected Branch  : main"
+                    echo "🟢 Selected TestCase: TC01_LodgeTheBillUsingImportandInwardMenu"
                 }
             }
         }
 
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Christy209/ProjectWorkspace',
-                    branch: "main"
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/Christy209/ProjectWorkspace.git'
+                    ]]
+                ])
             }
         }
 
-        stage('Load Managed Config') {
+        stage('Use Managed Config') {
             steps {
-                configFileProvider([
-                    configFile(
-                        fileId: '11cdb286-7987-4e44-af47-44613fcbebcb',
-                        targetLocation: 'config.properties'
-                    )
-                ]) {
+                configFileProvider([configFile(fileId: 'config.properties', variable: 'CONFIG_FILE')]) {
                     script {
-                        def props = readProperties file: 'config.properties'
+                        echo "📄 Copying Jenkins Managed config to workspace"
+                        bat "copy /Y \"%CONFIG_FILE%\" ImportAndInwardBills\\resources\\config.properties"
 
+                        // Optional: read and set env variables
+                        def props = readProperties file: 'ImportAndInwardBills/resources/config.properties'
                         env.URL     = props.url
                         env.USERID  = props.userid
                         env.PASS    = props.password
@@ -51,77 +57,39 @@ pipeline {
             }
         }
 
-        stage('Read Repo Config') {
-            steps {
-                script {
-                    def configPath = 'ImportAndInwardBills/resources/config.properties'
-                    echo "Reading repo config file: ${configPath}"
-
-                    def props = readProperties file: configPath
-
-                    env.DB_URL  = props.DB_URL
-                    env.DB_USER = props.DB_USER
-                    env.DB_PASS = props.DB_PASS
-
-                    echo """
-                    🔹 Loaded Repo Config
-                    DB_URL  : ${env.DB_URL}
-                    DB_USER : ${env.DB_USER}
-                    """
-                }
-            }
-        }
-
         stage('Build') {
             steps {
-                dir('ImportAndInwardBills') {
-                    bat "\"${MAVEN_HOME}\" clean install -U"
+                script {
+                    echo "🔨 Running Maven Build..."
+                    bat "${MAVEN_HOME} clean install -f ImportAndInwardBills\\pom.xml"
                 }
             }
         }
 
-        stage('Run Selected Tests') {
+        stage('Run Tests') {
             steps {
-                dir('ImportAndInwardBills') {
-                    script {
-                        bat 'rmdir /S /Q target\\surefire-reports || exit 0'
+                script {
+                    echo "🧪 Running TestCase: TC01_LodgeTheBillUsingImportandInwardMenu"
+                    bat "${MAVEN_HOME} test -f ImportAndInwardBills\\pom.xml -Dtest=TC01_LodgeTheBillUsingImportandInwardMenu"
+                }
+            }
+        }
 
-                        def testCase = "TC01_LodgeTheBillUsingImportandInwardMenu"
-
-                        bat "\"${MAVEN_HOME}\" clean -Dtest=TestCases.${testCase} test " +
-                            "-Ddb.url=${env.DB_URL} -Ddb.user=${env.DB_USER} -Ddb.pass=${env.DB_PASS}"
-                    }
+        stage('Post Steps') {
+            steps {
+                script {
+                    echo "✅ Pipeline completed successfully!"
                 }
             }
         }
     }
 
     post {
-        always {
-            script {
-                def reportFiles = findFiles(glob: 'ImportAndInwardBills/target/surefire-reports/*.xml')
-
-                if (reportFiles.length > 0) {
-                    junit(
-                        testResults: 'ImportAndInwardBills/target/surefire-reports/*.xml',
-                        allowEmptyResults: true,
-                        skipMarkingBuildUnstable: true,
-                        keepLongStdio: true
-                    )
-                } else {
-                    echo "⚠ No test XML reports found, skipping JUnit publishing"
-                }
-
-                archiveArtifacts artifacts: 'ImportAndInwardBills/target/surefire-reports/**', fingerprint: true
-            }
-        }
-
         success {
-            echo "🎉 Build PASSED"
+            echo "🎉 Build and tests ran successfully!"
         }
-
         failure {
-            echo "❌ Build FAILED"
+            echo "❌ Pipeline failed. Check logs for details."
         }
     }
 }
