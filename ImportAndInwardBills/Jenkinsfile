@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         MAVEN_HOME = "C:\\apache-maven-3.9.10\\bin\\mvn"
+        BACKEND_URL = "http://localhost:4000" // Your manually started backend
     }
 
     stages {
@@ -30,46 +31,38 @@ pipeline {
             }
         }
 
-        stage('Use Managed Config') {
-            steps {
-                configFileProvider([configFile(fileId: 'config.properties', variable: 'CONFIG_FILE')]) {
-                    script {
-                        echo "📄 Copying Jenkins Managed config to workspace"
-                        
-                        // Create TestResult folder if not exists
-                        def testResultDir = "${env.WORKSPACE}\\TestResult"
-                        if (!fileExists(testResultDir)) {
-                            bat "mkdir \"${testResultDir}\""
-                        }
-
-                        // Copy config.properties
-                        bat "copy /Y \"%CONFIG_FILE%\" \"${testResultDir}\\config.properties\""
-
-                        // Load properties into environment variables
-                        def props = readProperties file: "${testResultDir}\\config.properties"
-                        env.URL     = props.url
-                        env.USERID  = props.userid
-                        env.PASS    = props.password
-                        env.USERID2 = props.userid2
-                        env.PASS2   = props.password2
-
-                        echo """
-                        🔹 Loaded Jenkins Managed Config
-                        URL     : ${env.URL}
-                        USERID  : ${env.USERID}
-                        USERID2 : ${env.USERID2}
-                        """
-                    }
-                }
-            }
-        }
-
-        stage('Edit Config (Optional)') {
+        stage('Fetch Config from Backend') {
             steps {
                 script {
-                    // Optional: Allow editing config.properties before build
-                    echo "✏️ You can manually edit TestResult\\config.properties if needed."
-                    echo "💡 This is just informational; manual edits are outside pipeline execution."
+                    echo "📄 Fetching config.properties from backend at ${env.BACKEND_URL}"
+
+                    def testResultDir = "${env.WORKSPACE}\\TestResult"
+                    if (!fileExists(testResultDir)) {
+                        bat "mkdir \"${testResultDir}\""
+                    }
+
+                    // Fetch config from running backend
+                    def configContent = bat(
+                        script: "curl -s ${env.BACKEND_URL}/config",
+                        returnStdout: true
+                    ).trim()
+
+                    writeFile file: "${testResultDir}\\config.properties", text: configContent
+
+                    // Load properties as environment variables
+                    def props = readProperties file: "${testResultDir}\\config.properties"
+                    env.URL     = props.url
+                    env.USERID  = props.userid
+                    env.PASS    = props.password
+                    env.USERID2 = props.userid2
+                    env.PASS2   = props.password2
+
+                    echo """
+                    🔹 Loaded Config from Backend
+                    URL     : ${env.URL}
+                    USERID  : ${env.USERID}
+                    USERID2 : ${env.USERID2}
+                    """
                 }
             }
         }
@@ -88,6 +81,19 @@ pipeline {
                 script {
                     echo "🧪 Running TestCase: TC01_LodgeTheBillUsingImportandInwardMenu"
                     bat "${MAVEN_HOME} test -f %WORKSPACE%\\ImportAndInwardBills\\pom.xml -Dtest=TC01_LodgeTheBillUsingImportandInwardMenu"
+                }
+            }
+        }
+
+        stage('Update Config Back to Backend (Optional)') {
+            steps {
+                script {
+                    echo "🔄 Updating config.properties back to backend (optional)"
+
+                    def updatedContent = readFile("${env.WORKSPACE}\\TestResult\\config.properties")
+                    bat """
+                    curl -X POST -H "Content-Type: application/json" -d "{\\"content\\": \\"${updatedContent.replace('"','\\\\\"') }\\", \\"secret\\": \\"CHRISTY_EDIT\\"}" ${env.BACKEND_URL}/config
+                    """
                 }
             }
         }
