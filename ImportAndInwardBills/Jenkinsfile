@@ -49,20 +49,7 @@ pipeline {
 
                     writeFile file: "${testResultDir}\\config.properties", text: configContent
 
-                    // Load properties as environment variables
-                    def props = readProperties file: "${testResultDir}\\config.properties"
-                    env.URL     = props.url
-                    env.USERID  = props.userid
-                    env.PASS    = props.password
-                    env.USERID2 = props.userid2
-                    env.PASS2   = props.password2
-
-                    echo """
-                    🔹 Loaded Config from Backend
-                    URL     : ${env.URL}
-                    USERID  : ${env.USERID}
-                    USERID2 : ${env.USERID2}
-                    """
+                    echo "🔹 Config fetched and saved to TestResult\\config.properties"
                 }
             }
         }
@@ -91,8 +78,10 @@ pipeline {
                     echo "🔄 Updating config.properties back to backend (optional)"
 
                     def updatedContent = readFile("${env.WORKSPACE}\\TestResult\\config.properties")
+                    def escapedContent = updatedContent.replaceAll('"', '\\"')
+
                     bat """
-                    curl -X POST -H "Content-Type: application/json" -d "{\\"content\\": \\"${updatedContent.replace('"','\\\\\"') }\\", \\"secret\\": \\"CHRISTY_EDIT\\"}" ${env.BACKEND_URL}/config
+                    curl -X POST -H "Content-Type: application/json" -d "{\\"content\\": \\"${escapedContent}\\", \\"secret\\": \\"CHRISTY_EDIT\\"}" ${env.BACKEND_URL}/config
                     """
                 }
             }
