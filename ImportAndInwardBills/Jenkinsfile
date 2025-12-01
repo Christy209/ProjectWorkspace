@@ -36,32 +36,45 @@ pipeline {
                 configFileProvider([configFile(fileId: 'config.properties', variable: 'CONFIG_FILE')]) {
                     script {
                         echo "📄 Copying Jenkins Managed config to workspace"
+                        bat "mkdir \"%WORKSPACE%\\TestResult\""
+                        bat "copy /Y \"%CONFIG_FILE%\" \"%WORKSPACE%\\TestResult\\config.properties\""
 
-                        // Create a visible folder for the config file
-                        bat "mkdir \"${WORKSPACE}\\TestResult\""
-
-                        // Copy config.properties to TestResult folder
-                        bat "copy /Y \"%CONFIG_FILE%\" \"${WORKSPACE}\\TestResult\\config.properties\""
-
-                        // Read properties using Groovy interpolation
-                        def props = readProperties file: "${WORKSPACE}\\TestResult\\config.properties"
+                        // Read properties
+                        def props = readProperties file: "%WORKSPACE%\\TestResult\\config.properties"
                         env.URL     = props.url
                         env.USERID  = props.userid
                         env.PASS    = props.password
                         env.USERID2 = props.userid2
                         env.PASS2   = props.password2
 
-                        echo """
-                        🔹 Loaded Jenkins Managed Config
-                        URL     : ${env.URL}
-                        USERID  : ${env.USERID}
-                        USERID2 : ${env.USERID2}
-                        """
+                        // Display properties in console
+                        echo "📌 Loaded Jenkins Managed Config:"
+                        props.each { key, value ->
+                            echo "${key} = ${value}"
+                        }
                     }
                 }
+            }
+        }
 
-                // Archive the config file to see it in Jenkins UI permanently
-                archiveArtifacts artifacts: 'TestResult/config.properties', fingerprint: true
+        stage('Edit Config (Optional)') {
+            steps {
+                script {
+                    // Example: dynamically update config.properties in workspace
+                    def propsFile = "%WORKSPACE%\\TestResult\\config.properties"
+                    writeFile file: propsFile, text: """
+                    url=${env.URL}
+                    userid=${env.USERID}
+                    password=${env.PASS}
+                    userid2=${env.USERID2}
+                    password2=${env.PASS2}
+                    """
+                    echo "✏️ Updated config.properties (if needed) in workspace:"
+                    def updatedProps = readProperties file: propsFile
+                    updatedProps.each { key, value ->
+                        echo "${key} = ${value}"
+                    }
+                }
             }
         }
 
@@ -69,7 +82,7 @@ pipeline {
             steps {
                 script {
                     echo "🔨 Running Maven Build..."
-                    bat "${MAVEN_HOME} clean install -f ${WORKSPACE}\\ImportAndInwardBills\\pom.xml"
+                    bat "${MAVEN_HOME} clean install -f %WORKSPACE%\\ImportAndInwardBills\\pom.xml"
                 }
             }
         }
@@ -78,7 +91,7 @@ pipeline {
             steps {
                 script {
                     echo "🧪 Running TestCase: TC01_LodgeTheBillUsingImportandInwardMenu"
-                    bat "${MAVEN_HOME} test -f ${WORKSPACE}\\ImportAndInwardBills\\pom.xml -Dtest=TC01_LodgeTheBillUsingImportandInwardMenu"
+                    bat "${MAVEN_HOME} test -f %WORKSPACE%\\ImportAndInwardBills\\pom.xml -Dtest=TC01_LodgeTheBillUsingImportandInwardMenu"
                 }
             }
         }
