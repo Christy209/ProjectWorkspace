@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        // Set Maven home
         MAVEN_HOME = "C:\\apache-maven-3.9.10\\bin\\mvn"
     }
 
@@ -36,22 +35,30 @@ pipeline {
                 configFileProvider([configFile(fileId: 'config.properties', variable: 'CONFIG_FILE')]) {
                     script {
                         echo "📄 Copying Jenkins Managed config to workspace"
-                        bat "mkdir \"%WORKSPACE%\\TestResult\""
-                        bat "copy /Y \"%CONFIG_FILE%\" \"%WORKSPACE%\\TestResult\\config.properties\""
+                        
+                        // Create TestResult folder if not exists
+                        def testResultDir = "${env.WORKSPACE}\\TestResult"
+                        if (!fileExists(testResultDir)) {
+                            bat "mkdir \"${testResultDir}\""
+                        }
 
-                        // Read properties
-                        def props = readProperties file: "%WORKSPACE%\\TestResult\\config.properties"
+                        // Copy config.properties
+                        bat "copy /Y \"%CONFIG_FILE%\" \"${testResultDir}\\config.properties\""
+
+                        // Load properties into environment variables
+                        def props = readProperties file: "${testResultDir}\\config.properties"
                         env.URL     = props.url
                         env.USERID  = props.userid
                         env.PASS    = props.password
                         env.USERID2 = props.userid2
                         env.PASS2   = props.password2
 
-                        // Display properties in console
-                        echo "📌 Loaded Jenkins Managed Config:"
-                        props.each { key, value ->
-                            echo "${key} = ${value}"
-                        }
+                        echo """
+                        🔹 Loaded Jenkins Managed Config
+                        URL     : ${env.URL}
+                        USERID  : ${env.USERID}
+                        USERID2 : ${env.USERID2}
+                        """
                     }
                 }
             }
@@ -60,20 +67,9 @@ pipeline {
         stage('Edit Config (Optional)') {
             steps {
                 script {
-                    // Example: dynamically update config.properties in workspace
-                    def propsFile = "%WORKSPACE%\\TestResult\\config.properties"
-                    writeFile file: propsFile, text: """
-                    url=${env.URL}
-                    userid=${env.USERID}
-                    password=${env.PASS}
-                    userid2=${env.USERID2}
-                    password2=${env.PASS2}
-                    """
-                    echo "✏️ Updated config.properties (if needed) in workspace:"
-                    def updatedProps = readProperties file: propsFile
-                    updatedProps.each { key, value ->
-                        echo "${key} = ${value}"
-                    }
+                    // Optional: Allow editing config.properties before build
+                    echo "✏️ You can manually edit TestResult\\config.properties if needed."
+                    echo "💡 This is just informational; manual edits are outside pipeline execution."
                 }
             }
         }
