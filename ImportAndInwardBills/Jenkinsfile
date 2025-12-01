@@ -23,6 +23,26 @@ pipeline {
             }
         }
 
+        stage('Load Config') {
+            steps {
+                configFileProvider([configFile(fileId: 'ImportInwardConfig', targetLocation: 'config.properties')]) {
+                    script {
+                        def props = readProperties file: 'config.properties'
+
+                        env.URL     = props.url
+                        env.USERID  = props.userid
+                        env.PASS    = props.password
+                        env.USERID2 = props.userid2
+                        env.PASS2   = props.password2
+
+                        echo "URL: ${env.URL}"
+                        echo "USERID: ${env.USERID}"
+                        echo "USERID2: ${env.USERID2}"
+                    }
+                }
+            }
+        }
+
         stage('Read Config') {
             steps {
                 script {
@@ -67,7 +87,7 @@ pipeline {
     post {
         always {
             script {
-                // SAFE JUNIT (no allure)
+                // SAFE JUNIT
                 def reportFiles = findFiles(glob: 'ImportAndInwardBills/target/surefire-reports/*.xml')
 
                 if (reportFiles.length > 0) {
@@ -81,7 +101,7 @@ pipeline {
                     echo "⚠ No test XML reports found, skipping JUnit publishing"
                 }
 
-                // Archive test output
+                // Archive
                 archiveArtifacts artifacts: 'ImportAndInwardBills/target/surefire-reports/**', fingerprint: true
             }
         }
