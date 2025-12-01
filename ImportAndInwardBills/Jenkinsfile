@@ -25,7 +25,8 @@ pipeline {
 
         stage('Load Config') {
             steps {
-                configFileProvider([configFile(fileId: 'ImportInwardConfig', targetLocation: 'config.properties')]) {
+                configFileProvider([configFile(fileId: 'b3ea3155-ad1c-48ac-9315-f2b2113a83a2', targetLocation: 'config.properties')]) {
+
                     script {
                         def props = readProperties file: 'config.properties'
 
