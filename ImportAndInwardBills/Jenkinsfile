@@ -33,13 +33,16 @@ pipeline {
 
         stage('Use Managed Config') {
             steps {
-                configFileProvider([configFile(fileId: 'config.properties', variable: 'CONFIG_FILE')]) {
+                // Load Jenkins Managed File dynamically
+                configFileProvider([configFile(fileId: 'YOUR_FILE_ID_HERE', variable: 'CONFIG_FILE')]) {
                     script {
                         echo "📄 Copying Jenkins Managed config to workspace"
                         bat "copy /Y \"%CONFIG_FILE%\" ImportAndInwardBills\\resources\\config.properties"
 
-                        // Optional: read and set env variables
+                        // Read properties dynamically
                         def props = readProperties file: 'ImportAndInwardBills/resources/config.properties'
+
+                        // Export properties as environment variables
                         env.URL     = props.url
                         env.USERID  = props.userid
                         env.PASS    = props.password
