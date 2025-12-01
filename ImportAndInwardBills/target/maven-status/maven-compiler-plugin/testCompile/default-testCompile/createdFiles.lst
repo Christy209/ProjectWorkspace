@@ -1,0 +1,12 @@
+TestCases\TC05_Accept_The_Lodge.class
+TestCases\TC06_Export_Amend_Bill.class
+TestCases\TC01_Inward_Lodge_Bill.class
+TestCases\TC01_Payments_LodgeOutwardBill.class
+TestCases\TC02_InWard_Delink.class
+TestCases\TC02_Realize.class
+TestCases\TC06_Close_Bill.class
+TestCases\TC04_Amend_Bill_Inward.class
+TestCases\TC04_Inward_Protest.class
+TestCases\TC03_Dishonor_Of_Inward_Bill.class
+TestCases\TCO4_Outward_FreeDelivery.class
+TestCases\TC03_Unclose_Bill.class

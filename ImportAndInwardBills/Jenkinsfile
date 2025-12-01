@@ -1,0 +1,68 @@
+pipeline {
+    agent any
+
+    environment {
+        MAVEN_HOME = "C:\\apache-maven-3.9.10\\bin\\mvn"
+    }
+
+    stages {
+
+        stage('Init') {
+            steps {
+                script {
+                    echo "🟢 Selected Branch  : main"
+                    echo "🟢 Selected TestCase: TC01_LodgeTheBillUsingImportandInwardMenu"
+                }
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/Christy209/ProjectWorkspace.git'
+                    ]]
+                ])
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    echo "🔨 Running Maven Build..."
+                    bat "${MAVEN_HOME} clean install -f %WORKSPACE%\\ImportAndInwardBills\\pom.xml"
+                }
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                script {
+                    echo "🧪 Running TestCase: TC01_LodgeTheBillUsingImportandInwardMenu"
+                    bat "${MAVEN_HOME} test -f %WORKSPACE%\\ImportAndInwardBills\\pom.xml -Dtest=TC01_LodgeTheBillUsingImportandInwardMenu"
+                }
+            }
+        }
+
+        stage('Post Steps') {
+            steps {
+                script {
+                    echo "✅ Pipeline completed successfully!"
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "🎉 Build and tests ran successfully!"
+        }
+        failure {
+            echo "❌ Pipeline failed. Check logs for details."
+        }
+    }
+}
