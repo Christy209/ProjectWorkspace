@@ -33,14 +33,18 @@ pipeline {
 
         stage('Use Managed Config') {
             steps {
-                // Updated to actual Managed File ID
                 configFileProvider([configFile(fileId: 'config.properties', variable: 'CONFIG_FILE')]) {
                     script {
                         echo "📄 Copying Jenkins Managed config to workspace"
-                        bat "copy /Y \"%CONFIG_FILE%\" %WORKSPACE%\\ImportAndInwardBills\\resources\\config.properties"
 
-                        // Read properties and set environment variables
-                        def props = readProperties file: "%WORKSPACE%\\ImportAndInwardBills\\resources\\config.properties"
+                        // Create a visible folder for the config file
+                        bat "mkdir \"${WORKSPACE}\\TestResult\""
+
+                        // Copy config.properties to TestResult folder
+                        bat "copy /Y \"%CONFIG_FILE%\" \"${WORKSPACE}\\TestResult\\config.properties\""
+
+                        // Read properties using Groovy interpolation
+                        def props = readProperties file: "${WORKSPACE}\\TestResult\\config.properties"
                         env.URL     = props.url
                         env.USERID  = props.userid
                         env.PASS    = props.password
@@ -55,6 +59,9 @@ pipeline {
                         """
                     }
                 }
+
+                // Archive the config file to see it in Jenkins UI permanently
+                archiveArtifacts artifacts: 'TestResult/config.properties', fingerprint: true
             }
         }
 
@@ -62,7 +69,7 @@ pipeline {
             steps {
                 script {
                     echo "🔨 Running Maven Build..."
-                    bat "${MAVEN_HOME} clean install -f %WORKSPACE%\\ImportAndInwardBills\\pom.xml"
+                    bat "${MAVEN_HOME} clean install -f ${WORKSPACE}\\ImportAndInwardBills\\pom.xml"
                 }
             }
         }
@@ -71,7 +78,7 @@ pipeline {
             steps {
                 script {
                     echo "🧪 Running TestCase: TC01_LodgeTheBillUsingImportandInwardMenu"
-                    bat "${MAVEN_HOME} test -f %WORKSPACE%\\ImportAndInwardBills\\pom.xml -Dtest=TC01_LodgeTheBillUsingImportandInwardMenu"
+                    bat "${MAVEN_HOME} test -f ${WORKSPACE}\\ImportAndInwardBills\\pom.xml -Dtest=TC01_LodgeTheBillUsingImportandInwardMenu"
                 }
             }
         }
