@@ -23,10 +23,14 @@ pipeline {
             }
         }
 
-        stage('Load Config') {
+        stage('Load Managed Config') {
             steps {
-                configFileProvider([configFile(fileId: 'b3ea3155-ad1c-48ac-9315-f2b2113a83a2', targetLocation: 'config.properties')]) {
-
+                configFileProvider([
+                    configFile(
+                        fileId: 'b3ea3155-ad1c-48ac-9315-f2b2113a83a2',
+                        targetLocation: 'config.properties'
+                    )
+                ]) {
                     script {
                         def props = readProperties file: 'config.properties'
 
@@ -36,27 +40,29 @@ pipeline {
                         env.USERID2 = props.userid2
                         env.PASS2   = props.password2
 
-                        echo "URL: ${env.URL}"
-                        echo "USERID: ${env.USERID}"
-                        echo "USERID2: ${env.USERID2}"
+                        echo "Loaded Managed Config:"
+                        echo "URL     : ${env.URL}"
+                        echo "USERID  : ${env.USERID}"
+                        echo "USERID2 : ${env.USERID2}"
                     }
                 }
             }
         }
 
-        stage('Read Config') {
+        stage('Read Repo Config') {
             steps {
                 script {
                     def configPath = 'ImportAndInwardBills/resources/config.properties'
-                    echo "Reading config from: ${configPath}"
+                    echo "Reading repo config file: ${configPath}"
 
                     def props = readProperties file: configPath
-                    env.DB_URL = props.DB_URL
+
+                    env.DB_URL  = props.DB_URL
                     env.DB_USER = props.DB_USER
                     env.DB_PASS = props.DB_PASS
 
-                    echo "DB_URL   : ${env.DB_URL}"
-                    echo "DB_USER  : ${env.DB_USER}"
+                    echo "DB_URL  : ${env.DB_URL}"
+                    echo "DB_USER : ${env.DB_USER}"
                 }
             }
         }
@@ -88,7 +94,6 @@ pipeline {
     post {
         always {
             script {
-                // SAFE JUNIT
                 def reportFiles = findFiles(glob: 'ImportAndInwardBills/target/surefire-reports/*.xml')
 
                 if (reportFiles.length > 0) {
@@ -102,7 +107,6 @@ pipeline {
                     echo "⚠ No test XML reports found, skipping JUnit publishing"
                 }
 
-                // Archive
                 archiveArtifacts artifacts: 'ImportAndInwardBills/target/surefire-reports/**', fingerprint: true
             }
         }
